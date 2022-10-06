@@ -26,6 +26,10 @@
       <Project>{f95bb3d2-294c-4338-850f-70e610258bef}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Build\Assets\Shaders\basic.frag" />
+    <None Include="..\Build\Assets\Shaders\basic.vert" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
