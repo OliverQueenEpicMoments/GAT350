@@ -1,19 +1,16 @@
 #pragma once
 #include "Math/Vector2.h"
 #include "Resource/Resource.h"
+#include "Renderer.h"
 #include <string>
 
 struct SDL_Texture;
 struct SDL_Surface;
-// !! forward declaration for SDL pointers below (SDL likes to use structs)
 
-namespace Ethrl
-{
-	// !! forward declaration for Renderer below
+namespace Ethrl {
 	class Renderer;
 
-	class Texture : public Resource
-	{
+	class Texture : public Resource	{
 	public:
 		Texture() = default;
 		~Texture();
@@ -28,6 +25,9 @@ namespace Ethrl
 		friend class Renderer;
 
 	private:
-		SDL_Texture* m_texture = nullptr;
+		GLuint m_texture = 0;
+		GLenum m_target = GL_TEXTURE_2D;
+		GLuint m_unit = GL_TEXTURE0;
+		//SDL_Texture* m_texture = nullptr;
 	};
 }
