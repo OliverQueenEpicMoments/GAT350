@@ -2,12 +2,13 @@
 #include <iostream>
 
 float Points[] = {
-  -0.5f, -0.5f,  0.0f,
-   -0.5f,  0.5f,  0.0f,
-   0.5f, -0.5f,  0.0f,
-   0.5f, 0.5f, 0, 
-   0.5f, -0.5f, 0, 
-   -0.5f, 0.5f, 0, 
+  -1.0f, -1.0f,  0.0f,
+   -1.0f,  1.0f,  0.0f,
+   1.0f, -1.0f,  0.0f,
+
+   1.0f, 1.0f, 0.0f, 
+   1.0f, -1.0f, 0.0f, 
+   -1.0f, 1.0f, 0.0f, 
 };
 
 glm::vec3 Colors[] = {
@@ -23,9 +24,10 @@ glm::vec2 TexCoords[] = {
 	{0, 0},
 	{0, 1},
 	{1, 0},
-	{0, 1},
+
 	{1, 1},
-	{1, 0}
+	{1, 0},
+	{0, 1}
 };
 
 int main(int argc, char** argv) {
@@ -79,20 +81,17 @@ int main(int argc, char** argv) {
 	std::shared_ptr<Ethrl::Shader> vs = Ethrl::g_resources.Get<Ethrl::Shader>("Shaders/basic.vert", GL_VERTEX_SHADER);
 	std::shared_ptr<Ethrl::Shader> fs = Ethrl::g_resources.Get<Ethrl::Shader>("Shaders/basic.frag", GL_FRAGMENT_SHADER);
 
-	/*GLuint vs = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vs, 1, &vertex_shader, NULL);
-	glCompileShader(vs);
-
-	GLuint fs = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fs, 1, &fragment_shader, NULL);
-	glCompileShader(fs);*/
-
 	// Create program
 	GLuint program = glCreateProgram();
 	glAttachShader(program, fs->m_Shader);
 	glAttachShader(program, vs->m_Shader);
 	glLinkProgram(program);
 	glUseProgram(program);
+
+	// Create texture
+	std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Crate.png", GL_VERTEX_SHADER);
+	std::shared_ptr<Ethrl::Texture> texture2 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Llama.jpg", GL_VERTEX_SHADER);
+	texture1->Bind();
 
 	GLint Uniform1 = glGetUniformLocation(program, "scale");
 	GLint Uniform2 = glGetUniformLocation(program, "tint");
