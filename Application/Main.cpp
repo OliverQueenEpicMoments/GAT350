@@ -86,13 +86,7 @@ int main(int argc, char** argv) {
     std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.txt");
     material->Bind();
 
-	// Create texture
-	/*std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Crate.png", GL_VERTEX_SHADER);
-	std::shared_ptr<Ethrl::Texture> texture2 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Llama.jpg", GL_VERTEX_SHADER);
-	texture2->Bind();*/
-
 	glm::mat4 mx{ 1 };
-	//mx = glm::scale(glm::vec3{0.5, 0.5, 0.5});
 
 	bool Quit = false;
 	while (!Quit) {
@@ -103,10 +97,10 @@ int main(int argc, char** argv) {
 		program->SetUniform("scale", std::sin(Ethrl::g_time.time));
 		program->SetUniform("transform", mx);
 
-        /*material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
+        material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
         material->GetProgram()->SetUniform("scale", 0.5f);
         material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3));
-        material->GetProgram()->SetUniform("transform", mx);*/
+        material->GetProgram()->SetUniform("transform", mx);
 
 		Ethrl::g_renderer.BeginFrame();
 

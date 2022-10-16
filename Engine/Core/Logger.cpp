@@ -7,8 +7,7 @@ namespace Ethrl
 {
 	Logger g_logger;
 
-	void Logger::Log(const char* format, ...)
-	{
+	void Logger::Log(const char* format, ...) {
 		va_list args;
 		va_start(args, format);
 				
