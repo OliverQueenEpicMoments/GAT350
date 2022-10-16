@@ -27,6 +27,9 @@ namespace Ethrl {
 		friend class Renderer;
 
 	private:
+		void FlipSurface(SDL_Surface* surface);
+
+	private:
 		GLuint m_texture = 0;
 		GLenum m_target = GL_TEXTURE_2D;
 		GLuint m_unit = GL_TEXTURE0;

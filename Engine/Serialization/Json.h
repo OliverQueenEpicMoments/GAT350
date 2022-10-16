@@ -1,5 +1,6 @@
 #pragma once
 #include "rapidjson/document.h"
+#include "glm/glm.hpp"
 #include <string>
 #include <vector>
 
@@ -11,8 +12,7 @@ namespace Ethrl
 	struct Color;
 	struct Rect;
 
-	namespace json
-	{
+	namespace json {
 		bool Load(const std::string& filename, rapidjson::Document& document);
 
 		bool Get(const rapidjson::Value& value, const std::string& name, int& data);
@@ -20,9 +20,11 @@ namespace Ethrl
 		bool Get(const rapidjson::Value& value, const std::string& name, bool& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::string& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, Color& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, Rect& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data);
+		//bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3 data);
 	}
 }

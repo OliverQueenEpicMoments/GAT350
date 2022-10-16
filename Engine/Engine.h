@@ -41,14 +41,15 @@
 #include "Renderer/Texture.h"
 #include "Renderer/Model.h"
 #include "Renderer/Shader.h"
+#include "Renderer/Program.h"
+#include "Renderer/Material.h"
 
 #include <memory>
 #include <vector>
 #include <list>
 #include <variant>
 
-namespace Ethrl
-{
+namespace Ethrl {
 	extern Renderer g_renderer;
 	extern InputSystem g_inputSystem;
 	extern AudioSystem g_audioSystem;
@@ -57,8 +58,7 @@ namespace Ethrl
 	extern PhysicsSystem g_physicsSystem;
 	extern EventManager g_eventManager;
 	
-	class Engine : public Singleton<Engine>
-	{
+	class Engine : public Singleton<Engine>	{
 	public:
 		void Initialize();
 		void Shutdown();

@@ -77,27 +77,19 @@ int main(int argc, char** argv) {
 	glBindBuffer(GL_ARRAY_BUFFER, tvbo);
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 
-	// Create shader
-	std::shared_ptr<Ethrl::Shader> vs = Ethrl::g_resources.Get<Ethrl::Shader>("Shaders/basic.vert", GL_VERTEX_SHADER);
-	std::shared_ptr<Ethrl::Shader> fs = Ethrl::g_resources.Get<Ethrl::Shader>("Shaders/basic.frag", GL_FRAGMENT_SHADER);
+    // Create Program
+	std::shared_ptr<Ethrl::Program> program = Ethrl::g_resources.Get<Ethrl::Program>("Shaders/basic.prog");
+	program->Link();
+	program->Use();
 
-	// Create program
-	GLuint program = glCreateProgram();
-	glAttachShader(program, fs->m_Shader);
-	glAttachShader(program, vs->m_Shader);
-	glLinkProgram(program);
-	glUseProgram(program);
+    // Create Material
+    std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.txt");
+    material->Bind();
 
 	// Create texture
-	std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Crate.png", GL_VERTEX_SHADER);
+	/*std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Crate.png", GL_VERTEX_SHADER);
 	std::shared_ptr<Ethrl::Texture> texture2 = Ethrl::g_resources.Get<Ethrl::Texture>("Textures/Llama.jpg", GL_VERTEX_SHADER);
-	texture1->Bind();
-
-	GLint Uniform1 = glGetUniformLocation(program, "scale");
-	GLint Uniform2 = glGetUniformLocation(program, "tint");
-	GLint Uniform3 = glGetUniformLocation(program, "transform");
-
-	glUniform3f(Uniform2, 1, 1, 1);
+	texture2->Bind();*/
 
 	glm::mat4 mx{ 1 };
 	//mx = glm::scale(glm::vec3{0.5, 0.5, 0.5});
@@ -107,9 +99,14 @@ int main(int argc, char** argv) {
 		Ethrl::Engine::Instance().Update();
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
-		glUniform1f(Uniform1, std::sin(Ethrl::g_time.time));
 		mx = glm::eulerAngleXYZ(0.0f, 0.0f, Ethrl::g_time.time);
-		glUniformMatrix4fv(Uniform3, 1, GL_FALSE, glm::value_ptr(mx));
+		program->SetUniform("scale", std::sin(Ethrl::g_time.time));
+		program->SetUniform("transform", mx);
+
+        /*material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
+        material->GetProgram()->SetUniform("scale", 0.5f);
+        material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3));
+        material->GetProgram()->SetUniform("transform", mx);*/
 
 		Ethrl::g_renderer.BeginFrame();
 

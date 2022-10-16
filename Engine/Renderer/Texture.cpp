@@ -5,10 +5,8 @@
 #include <SDL_image.h>
 #include <cstdarg>
 
-namespace Ethrl
-{
+namespace Ethrl {
     Texture::~Texture() {
-        // !! if texture not null SDL_DestroyTexture
         if (m_texture) glDeleteTextures(1, &m_texture);
     }
 
@@ -30,23 +28,6 @@ namespace Ethrl
     }
 
     bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer) {
-        // destroy the current texture if one exists
-        /*if (m_texture) SDL_DestroyTexture(m_texture);
-
-        // create texture
-        // !! call SDL_CreateTextureFromSurface passing in renderer and surface
-        m_texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
-
-        // !! call SDL_FreeSurface passing in surface
-        SDL_FreeSurface(surface);
-
-        // check if texture was created
-        if (m_texture == nullptr)
-        {
-            LOG(SDL_GetError());
-            return false;
-        }
-        */
         return true;
     }
 
@@ -58,6 +39,7 @@ namespace Ethrl
             LOG(SDL_GetError());
             return false;
         }
+        FlipSurface(surface);
 
         // create texture
         glGenTextures(1, &m_texture);
@@ -79,10 +61,27 @@ namespace Ethrl
     }
 
     Ethrl::Vector2 Texture::GetSize() const {
-        //SDL_Point point;
-        //SDL_QueryTexture(m_texture, nullptr, nullptr, &point.x, &point.y);
-        
         return Vector2{ 0, 0 };
     }
-}
 
+    void Texture::FlipSurface(SDL_Surface* surface) {
+        SDL_LockSurface(surface);
+
+        int Pitch = surface->pitch; // Row Size
+        uint8_t* Temp = new uint8_t[Pitch]; // Intermediate Buffer
+        uint8_t* Pixels = (uint8_t*)surface->pixels;
+
+        for (int i = 0; i < surface->h / 2; ++i) {
+            uint8_t* Row1 = Pixels + i * Pitch;
+            uint8_t* Row2 = Pixels + (surface->h - i - 1) * Pitch;
+
+            // Swap Rows
+            memcpy(Temp, Row1, Pitch);
+            memcpy(Row1, Row2, Pitch);
+            memcpy(Row2, Temp, Pitch);
+        }
+        delete[] Temp;
+
+        SDL_UnlockSurface(surface);
+    }
+}

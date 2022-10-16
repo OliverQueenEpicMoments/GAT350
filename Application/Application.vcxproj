@@ -31,6 +31,9 @@
     <None Include="..\Build\Assets\Shaders\basic.prog" />
     <None Include="..\Build\Assets\Shaders\basic.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Build\Assets\Materials\Box.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
