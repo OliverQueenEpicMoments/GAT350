@@ -36,6 +36,8 @@ namespace Ethrl {
             AddShader(fshader);
         }
 
+        Link();
+
         return true;
     }
 
