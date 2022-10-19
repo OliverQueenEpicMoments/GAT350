@@ -89,7 +89,8 @@ int main(int argc, char** argv) {
 	glm::mat4 Model{ 1 };
     glm::mat4 Projection = glm::perspective(45.0f, Ethrl::g_renderer.GetWidth() / (float)Ethrl::g_renderer.GetHeight(), 0.01f, 100.0f);
 
-    glm::vec3 CameraPosition(0, 2, 2);
+    glm::vec3 CameraPosition(0, 0, 1);
+    float Speed = 3;
 
 	bool Quit = false;
 	while (!Quit) {
@@ -97,13 +98,18 @@ int main(int argc, char** argv) {
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
         // Move the camera
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Pressed) 
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y += Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_s) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z += Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_w) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z -= Speed * Ethrl::g_time.deltaTime;
 
 		Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
-        glm::mat4 View = glm::lookAt(CameraPosition, glm::vec3( 0, 0, 0 ), glm::vec3( 0, 1, 0 ));
-        //material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3));
+        glm::mat4 View = glm::lookAt(CameraPosition, CameraPosition + glm::vec3(0, 0, -1), glm::vec3( 0, 1, 0 ));
         glm::mat4 MVP = Projection * View * Model;
         material->GetProgram()->SetUniform("MVP", MVP);
+        //material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3)); Bounces box.
 
 		Ethrl::g_renderer.BeginFrame();
 

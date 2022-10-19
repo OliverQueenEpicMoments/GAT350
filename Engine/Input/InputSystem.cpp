@@ -2,8 +2,7 @@
 #include <SDL.h>
 #include <iostream>
 
-namespace Ethrl
-{
+namespace Ethrl {
 	const uint32_t button_left = 0;
 	const uint32_t button_middle = 1;
 	const uint32_t button_right = 2;
@@ -16,8 +15,12 @@ namespace Ethrl
 	const uint32_t key_left = SDL_SCANCODE_LEFT;
 	const uint32_t key_right = SDL_SCANCODE_RIGHT;
 
-	void InputSystem::Initialize()
-	{
+    const uint32_t key_w = SDL_SCANCODE_W;
+    const uint32_t key_a = SDL_SCANCODE_A;
+    const uint32_t key_s = SDL_SCANCODE_S;
+    const uint32_t key_d = SDL_SCANCODE_D;
+
+	void InputSystem::Initialize() {
 		int numKeys;
 		// get pointer to sdl keyboard states and number of keys
 		const uint8_t* keyboardState = SDL_GetKeyboardState(&numKeys);
