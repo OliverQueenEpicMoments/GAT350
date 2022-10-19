@@ -38,9 +38,8 @@ namespace Ethrl
 		}
 	}
 
-	void Model::Draw(Renderer& renderer, const Transform& transform)
-	{
-		Matrix3x3 mx = transform.matrix;
+	void Model::Draw(Renderer& renderer, const Transform& transform) {
+		/*Matrix3x3 mx = transform.matrix;
 		//if (m_points.size() == 0) return;
 
 		for (size_t i = 0; i < m_points.size() - 1; i++)
@@ -49,7 +48,7 @@ namespace Ethrl
 			Ethrl::Vector2 p2 = mx * m_points[i + 1];
 
 			renderer.DrawLine(p1, p2, m_color);
-		}
+		} */
 	}
 
 

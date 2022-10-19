@@ -57,27 +57,12 @@ int main(int argc, char** argv) {
 	Ethrl::g_renderer.CreateWindow("Neumont", 800, 600);
 	LOG("Window Initialized...");
 
-    // Cube
-    GLuint vbo = 0;
-    glGenBuffers(1, &vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-
-	// Create vertex array
-	GLuint vao = 0;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-	glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-
-	glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-
-	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    // Create Vertex Buffer
+    std::shared_ptr<Ethrl::VertexBuffer> VB = Ethrl::g_resources.Get<Ethrl::VertexBuffer>("Box");
+    VB->CreateVertexBuffer(sizeof(Vertices), 36, Vertices);
+    VB->SetAttribute(0, 3, 8 * sizeof(float), 0);
+    VB->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
+    VB->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));
 
     // Create Material
     std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.txt");
@@ -98,22 +83,26 @@ int main(int argc, char** argv) {
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
         // Move the camera
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y += Speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y += Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_s) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z += Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_w) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z -= Speed * Ethrl::g_time.deltaTime;
 
-		Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_a) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_d) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
+
         glm::mat4 View = glm::lookAt(CameraPosition, CameraPosition + glm::vec3(0, 0, -1), glm::vec3( 0, 1, 0 ));
+		Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
         glm::mat4 MVP = Projection * View * Model;
+
         material->GetProgram()->SetUniform("MVP", MVP);
         //material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3)); Bounces box.
 
 		Ethrl::g_renderer.BeginFrame();
 
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+        VB->Draw();
 
 		Ethrl::g_renderer.EndFrame();
 	}

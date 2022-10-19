@@ -35,6 +35,7 @@
 #include "Resource/ResourceManager.h"
 #include "Physics/PhysicsSystem.h"
 
+#include "Renderer/VertexBuffer.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/Text.h"
 #include "Renderer/Font.h"
