@@ -1,6 +1,6 @@
 {
 	"program":"shaders/basic.prog",
-	"texture":"textures/Crate.png",
+	"texture":"textures/Ogre_diffuse.bmp",
 	"ambient":[
 		1,
 		1,

@@ -11,9 +11,12 @@ namespace Ethrl {
 
 		bool Create(std::string name, ...) override;
 
-		// vertex buffer
+		// Vertex Buffer
 		void CreateVertexBuffer(GLsizei size, GLsizei m_vertexCount, void* data);
 		void SetAttribute(int index, GLint size, GLsizei stride, size_t offset);
+
+        // Index Buffer
+        void CreateIndexBuffer(GLenum indextype, GLsizei count, void* data);
 
 		virtual void Draw(GLenum primitiveType = GL_TRIANGLES);
 
@@ -24,5 +27,9 @@ namespace Ethrl {
 
 		GLuint m_vbo = 0; // vertex buffer object
 		GLuint m_vertexCount = 0; // number of vertices in vertex buffer
+
+        GLuint m_ibo = 0; // Index buffer object
+        GLuint m_indexcount = 0; // Number of indices in index buffer
+        GLenum m_indextype = 0; // Data type of index
 	};
 }

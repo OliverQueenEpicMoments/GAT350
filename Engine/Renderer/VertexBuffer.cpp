@@ -26,8 +26,21 @@ namespace Ethrl {
         glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, (void*)(offset));
 	}
 
+	void VertexBuffer::CreateIndexBuffer(GLenum indextype, GLsizei count, void* data) {
+        m_indextype = indextype;
+        m_indexcount = count;
+
+        glGenBuffers(1, &m_ibo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ibo);
+        size_t indexSize = (m_indextype == GL_UNSIGNED_SHORT) ? sizeof(GLushort) : sizeof(GLuint);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indexcount * indexSize, data, GL_STATIC_DRAW);
+	}
+
 	void VertexBuffer::Draw(GLenum primitiveType) {
-        glBindVertexArray(m_vao);
-        glDrawArrays(primitiveType, 0, m_vertexCount);
+        if (m_ibo) {
+            glDrawElements(primitiveType, m_indexcount, m_indextype, 0);
+        } else if (m_vbo) {
+            glDrawArrays(primitiveType, 0, m_vertexCount);
+        }
 	}
 }

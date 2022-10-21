@@ -77,6 +77,13 @@ int main(int argc, char** argv) {
     glm::vec3 CameraPosition(0, 0, 1);
     float Speed = 3;
 
+    std::vector<Ethrl::Transform> Transforms;
+    for (size_t I = 0; I < 15; I++) {
+        Transforms.push_back({ { Ethrl::randomf(-2, 5), Ethrl::randomf(-2, 5), Ethrl::randomf(-2, 5)}, {0, Ethrl::random(360), 0} });
+    }
+
+    auto M = Ethrl::g_resources.Get<Ethrl::Model>("Models/Ogre.obj");
+
 	bool Quit = false;
 	while (!Quit) {
 		Ethrl::Engine::Instance().Update();
@@ -94,15 +101,21 @@ int main(int argc, char** argv) {
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_d) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
 
         glm::mat4 View = glm::lookAt(CameraPosition, CameraPosition + glm::vec3(0, 0, -1), glm::vec3( 0, 1, 0 ));
-		Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
-        glm::mat4 MVP = Projection * View * Model;
 
-        material->GetProgram()->SetUniform("MVP", MVP);
+		//Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
         //material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3)); Bounces box.
 
 		Ethrl::g_renderer.BeginFrame();
 
-        VB->Draw();
+        for (size_t I = 0; I < Transforms.size(); I++) {
+            Transforms[I].rotation += glm::vec3{ 0, 90 * Ethrl::g_time.deltaTime, 0 };
+
+            glm::mat4 MVP = Projection * View * (glm::mat4)Transforms[I];
+            material->GetProgram()->SetUniform("MVP", MVP);
+
+            VB->Draw();
+            M->m_vertexbuffer.Draw();
+        }
 
 		Ethrl::g_renderer.EndFrame();
 	}

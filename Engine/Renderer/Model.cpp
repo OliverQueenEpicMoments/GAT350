@@ -1,100 +1,66 @@
 #include "Model.h"
-#include "Core/File.h"
 #include "Core/Logger.h"
-#include "Math/Transform.h"
-#include "Math/MathUtils.h"
 
-#include <iostream>
-#include <sstream>
+namespace Ethrl {
+	bool Model::Create(std::string name, ...) {
+        Assimp::Importer importer;
 
-namespace Ethrl
-{
-	Model::Model(const std::string& filename)
-	{
-		Load(filename);
-		m_radius = CalculateRadius();
-	}
+        const aiScene* scene = importer.ReadFile(name, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
 
-	bool Model::Create(std::string filename, ...)
-	{
-		if (!Load(filename))
-		{
-			LOG("Error could not create model %s", filename.c_str());
-			return false;
-		}
+        if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
+            LOG("Error loading assimp file %s", importer.GetErrorString());
+            return false;
+        }
+
+        ProcessNode(scene->mRootNode, scene);
 
 		return true;
 	}
 
-	void Model::Draw(Renderer& renderer, const Vector2& position, float angle, const Vector2& scale)
-	{
-		// draw model points
-		for (size_t i = 0; i < m_points.size() - 1; i++)
-		{
-			Ethrl::Vector2 p1 = Vector2::Rotate((m_points[i] * scale), angle) + position;
-			Ethrl::Vector2 p2 = Vector2::Rotate((m_points[i + 1] * scale), angle) + position;
+    void Model::ProcessNode(aiNode* node, const aiScene* scene) {
+        // Process the current node meshes
+        for (unsigned int I = 0; I < node->mNumMeshes; I++) {
+            aiMesh* mesh = scene->mMeshes[node->mMeshes[I]];
+            ProcessMesh(mesh, scene);
+        }
 
-			renderer.DrawLine(p1, p2, m_color);
-		}
-	}
+        // Process the current node children
+        for (unsigned int I = 0; I < node->mNumChildren; I++) {
+            ProcessNode(node->mChildren[I], scene); 
+        }
+    }
 
-	void Model::Draw(Renderer& renderer, const Transform& transform) {
-		/*Matrix3x3 mx = transform.matrix;
-		//if (m_points.size() == 0) return;
+    void Model::ProcessMesh(aiMesh* mesh, const aiScene* scene) {
+        std::vector<Vertex_T> Vertices;
 
-		for (size_t i = 0; i < m_points.size() - 1; i++)
-		{
-			Ethrl::Vector2 p1 = mx * m_points[i];
-			Ethrl::Vector2 p2 = mx * m_points[i + 1];
+        // Get model vertex attributes
+        for (size_t I = 0; I < mesh->mNumVertices; I++) {
+            Vertex_T Vertex;
 
-			renderer.DrawLine(p1, p2, m_color);
-		} */
-	}
+            Vertex.Position = { mesh->mVertices[I].x, mesh->mVertices[I].y, mesh->mVertices[I].z };
+            if (mesh->mTextureCoords[0]) {
+                Vertex.TexCoord = { mesh->mTextureCoords[0][I].x, mesh->mTextureCoords[0][I].y};
+            } else {
+                Vertex.TexCoord = { 0, 0 };
+            }
 
+            Vertices.push_back(Vertex);
+        }
 
-	bool Model::Load(const std::string& filename)
-	{
-		std::string buffer;
+        // Create vertex buffer and attributes
+        m_vertexbuffer.CreateVertexBuffer((GLsizei)(sizeof(Vertex_T) * Vertices.size()), (GLsizei)Vertices.size(), Vertices.data());
+        m_vertexbuffer.SetAttribute(0, 3, sizeof(Vertex_T), 0);
+        m_vertexbuffer.SetAttribute(1, 2, sizeof(Vertex_T), offsetof(Vertex_T, TexCoord));
 
-		if (!Ethrl::ReadFile(filename, buffer))
-		{
-			LOG("Error could not load model %s", filename.c_str());
-			return false;
-		}
-
-		// read color
-		std::istringstream stream(buffer);
-		stream >> m_color;
-
-		// read number of points
-		std::string line;
-		std::getline(stream, line);
-
-		size_t numPoints = std::stoi(line);
-
-		// read model points
-		for (size_t i = 0; i < numPoints; i++)
-		{
-			Vector2 point;
-
-			stream >> point;
-			m_points.push_back(point);
-		}
-
-		return true;
-	}
-
-	float Model::CalculateRadius()
-	{
-		float radius = 0;
-
-		// find the largest length (radius)
-		for (auto& point : m_points)
-		{
-			if (point.Length() > radius) radius = point.Length();
-		}
-
-		return radius;
-	}
-
+        // Get model index vertices
+        std::vector<GLuint> Indices;
+        for (size_t I = 0; I < mesh->mNumFaces; I++) {
+            aiFace Face = mesh->mFaces[I];
+            for (size_t J = 0; J < Face.mNumIndices; J++) {
+                Indices.push_back(Face.mIndices[J]);
+            }
+        }
+        // Create index vertex buffer
+        m_vertexbuffer.CreateIndexBuffer(GL_UNSIGNED_INT, (GLsizei)Indices.size(), Indices.data());
+    }
 }
