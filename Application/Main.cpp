@@ -57,15 +57,20 @@ int main(int argc, char** argv) {
 	Ethrl::g_renderer.CreateWindow("Neumont", 800, 600);
 	LOG("Window Initialized...");
 
-    // Create Vertex Buffer
-    std::shared_ptr<Ethrl::VertexBuffer> VB = Ethrl::g_resources.Get<Ethrl::VertexBuffer>("Box");
-    VB->CreateVertexBuffer(sizeof(Vertices), 36, Vertices);
-    VB->SetAttribute(0, 3, 8 * sizeof(float), 0);
-    VB->SetAttribute(1, 3, 8 * sizeof(float), 3 * sizeof(float));
-    VB->SetAttribute(2, 2, 8 * sizeof(float), 6 * sizeof(float));
+    // Load scene
+    auto Scene = std::make_unique<Ethrl::Scene>();
+
+    rapidjson::Document document;
+    bool Success = Ethrl::json::Load("Scenes/Basic.snc", document);
+    if (!Success) {
+        LOG("Error loading scene fine %s", "Scenes/Basic.snc");
+    } else {
+        Scene->Read(document);
+        Scene->Initialize();
+    }
 
     // Create Material
-    std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.txt");
+    std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.mtrl");
     material->Bind();
 
     material->GetProgram()->SetUniform("tint", glm::vec3{ 1, 0, 0 });
@@ -90,10 +95,10 @@ int main(int argc, char** argv) {
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
         // Move the camera
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
+        /*if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y += Speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;*/
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_s) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z += Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_w) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z -= Speed * Ethrl::g_time.deltaTime;
 
@@ -105,6 +110,8 @@ int main(int argc, char** argv) {
 		//Model = glm::eulerAngleXYZ(0.0f, Ethrl::g_time.time, 0.0f);
         //material->GetProgram()->SetUniform("scale", std::sin(Ethrl::g_time.time * 3)); Bounces box.
 
+        Scene->Update();
+
 		Ethrl::g_renderer.BeginFrame();
 
         for (size_t I = 0; I < Transforms.size(); I++) {
@@ -113,12 +120,15 @@ int main(int argc, char** argv) {
             glm::mat4 MVP = Projection * View * (glm::mat4)Transforms[I];
             material->GetProgram()->SetUniform("MVP", MVP);
 
-            VB->Draw();
             M->m_vertexbuffer.Draw();
         }
 
+        Scene->Draw(Ethrl::g_renderer);
+
 		Ethrl::g_renderer.EndFrame();
 	}
+
+    Scene->RemoveAll();
 	Ethrl::Engine::Instance().Shutdown();
 
 	return 0;

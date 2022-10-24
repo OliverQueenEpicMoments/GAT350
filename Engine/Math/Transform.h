@@ -10,6 +10,10 @@ namespace Ethrl {
         glm::vec3 rotation{ 0 };
 		glm::vec3 scale{ 1 };
 
+        glm::vec3 GetRight() { return ((glm::mat4)(*this))[0]; }
+        glm::vec3 GetUp() { return ((glm::mat4)(*this))[1]; }
+        glm::vec3 GetForward() { return ((glm::mat4)(*this))[2]; }
+
 		glm::mat4 matrix;
 
 		Transform() = default;
@@ -18,7 +22,6 @@ namespace Ethrl {
 			rotation{ rotation },
 			scale{ scale } 
 		{}
-
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;

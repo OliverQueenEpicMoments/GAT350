@@ -1,12 +1,12 @@
 #pragma once
 #include "RenderComponent.h"
 
-namespace Ethrl
-{
+namespace Ethrl {
+    class Renderer;
 	class Model;
+	class Material;
 
-	class ModelComponent : public RenderComponent
-	{
+	class ModelComponent : public RenderComponent {
 	public:
 		CLASS_DECLARATION(ModelComponent)
 
@@ -17,6 +17,7 @@ namespace Ethrl
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
-		std::shared_ptr<Model> m_model;
+		std::shared_ptr<Model> model;
+		std::shared_ptr<Material> material;
 	};
 }

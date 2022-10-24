@@ -1,7 +1,6 @@
 #include "Engine.h"
 
-namespace Ethrl
-{
+namespace Ethrl {
 	Renderer g_renderer;
 	InputSystem g_inputSystem;
 	AudioSystem g_audioSystem;
@@ -38,8 +37,7 @@ namespace Ethrl
 		g_audioSystem.Update();
 	}
 
-	void Engine::Register()
-	{
+	void Engine::Register() {
 		REGISTER_CLASS(Actor);
 		REGISTER_CLASS(AudioComponent);
 		REGISTER_CLASS(ModelComponent);
@@ -52,5 +50,6 @@ namespace Ethrl
 		REGISTER_CLASS(TextComponent);
 		REGISTER_CLASS(TilemapComponent);
 		REGISTER_CLASS(CameraComponent);
+		REGISTER_CLASS(CameraController);
 	}
 }
