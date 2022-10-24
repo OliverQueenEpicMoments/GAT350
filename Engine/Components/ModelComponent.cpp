@@ -13,9 +13,9 @@ namespace Ethrl {
         material->Bind();
 
         // Set MVP matrix for model
-        material->GetProgram()->SetUniform("model", (glm::mat4)m_owner->m_transform);
-        material->GetProgram()->SetUniform("view", renderer.GetView());
-        material->GetProgram()->SetUniform("projection", renderer.GetProjection());
+        material->GetProgram()->SetUniform("Model", (glm::mat4)m_owner->m_transform);
+        material->GetProgram()->SetUniform("View", renderer.GetView());
+        material->GetProgram()->SetUniform("Projection", renderer.GetProjection());
 
         model->m_vertexbuffer.Draw();
 	}
