@@ -9,6 +9,20 @@ namespace Ethrl {
 		for (auto& actor : m_actors) { actor->Initialize(); }
 	}
 
+    bool Scene::Create(std::string name, ...) {
+        rapidjson::Document document;
+        bool Success = Ethrl::json::Load("Scenes/Basic.snc", document);
+        if (!Success) {
+            LOG("Error loading scene fine %s", "Scenes/Basic.snc");
+            return false;
+        }
+        else {
+            Read(document);
+            Initialize();
+        }
+        return true;
+    }
+
 	void Scene::Update() {
 		auto iter = m_actors.begin();
 		while (iter != m_actors.end()) {
