@@ -58,16 +58,7 @@ int main(int argc, char** argv) {
 	LOG("Window Initialized...");
 
     // Load scene
-    auto Scene = std::make_unique<Ethrl::Scene>();
-
-    rapidjson::Document document;
-    bool Success = Ethrl::json::Load("Scenes/Basic.snc", document);
-    if (!Success) {
-        LOG("Error loading scene fine %s", "Scenes/Basic.snc");
-    } else {
-        Scene->Read(document);
-        Scene->Initialize();
-    }
+    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Basic.snc");
 
     // Create Material
     std::shared_ptr<Ethrl::Material> material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Box.mtrl");
@@ -95,10 +86,10 @@ int main(int argc, char** argv) {
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
         // Move the camera
-        /*if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x -= Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) CameraPosition.x += Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y += Speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;*/
+        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) CameraPosition.y -= Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_s) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z += Speed * Ethrl::g_time.deltaTime;
         if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_w) == Ethrl::InputSystem::KeyState::Held) CameraPosition.z -= Speed * Ethrl::g_time.deltaTime;
 
@@ -122,12 +113,10 @@ int main(int argc, char** argv) {
 
             M->m_vertexbuffer.Draw();
         }
-
         Scene->Draw(Ethrl::g_renderer);
 
 		Ethrl::g_renderer.EndFrame();
 	}
-
     Scene->RemoveAll();
 	Ethrl::Engine::Instance().Shutdown();
 
