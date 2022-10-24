@@ -1,17 +1,16 @@
 #pragma once
 #include "Actor.h"
+#include "Resource/Resource.h"
 #include <list>
 #include <memory>
 
-namespace Ethrl
-{
+namespace Ethrl {
 	// forward declaration
 	class Actor;
 	class Renderer;
 	class Game;
 
-	class Scene : public GameObject, public ISerializable
-	{
+	class Scene : public GameObject, public ISerializable, public Resource {
 	public:
 		Scene() = default;
 		Scene(Game* game) : m_game{ game } {}
@@ -21,6 +20,7 @@ namespace Ethrl
 		CLASS_DECLARATION(Scene)
 
 		void Initialize() override;
+        virtual bool Create(std::string name, ...) override;
 		void Update() override;
 		void Draw(Renderer& renderer);
 
@@ -44,49 +44,37 @@ namespace Ethrl
 	private:
 		Game* m_game =nullptr;
 		std::list<std::unique_ptr<Actor>> m_actors;
-	};
-
+    };
 
 	template<typename T>
-	inline T* Scene::GetActor()
-	{
-		for (auto& actor : m_actors)
-		{
+	inline T* Scene::GetActor()	{
+		for (auto& actor : m_actors) {
 			T* result = dynamic_cast<T*>(actor.get());
 			if (result) return result;
 		}
-
 		return nullptr;
 	}
 
 	template<typename T>
-	inline T* Scene::GetActorFromName(const std::string& name)
-	{
-		for (auto& actor : m_actors)
-		{
-			if (actor->GetName() == name)
-			{
+	inline T* Scene::GetActorFromName(const std::string& name) {
+		for (auto& actor : m_actors) {
+			if (actor->GetName() == name) {
 				return dynamic_cast<T*>(actor.get());
 			}
 		}
-
 		return nullptr;
 	}
 
 	template<typename T>
-	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& tag)
-	{
+	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& tag) {
 		std::vector<T*> result;
 
-		for (auto& actor : m_actors)
-		{
-			if (actor->GetTag() == tag)
-			{
+		for (auto& actor : m_actors) {
+			if (actor->GetTag() == tag) {
 				T* tagActor = dynamic_cast<T*>(actor.get());
 				if (tagActor) result.push_back(tagActor);
 			}
 		}
-
 		return result;
 	}
 }
