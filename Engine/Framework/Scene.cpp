@@ -11,9 +11,9 @@ namespace Ethrl {
 
     bool Scene::Create(std::string name, ...) {
         rapidjson::Document document;
-        bool Success = Ethrl::json::Load("Scenes/Basic.snc", document);
+        bool Success = Ethrl::json::Load(name, document);
         if (!Success) {
-            LOG("Error loading scene fine %s", "Scenes/Basic.snc");
+            LOG("Error loading scene fine %s", name);
             return false;
         }
         else {
@@ -90,8 +90,6 @@ namespace Ethrl {
 				}
 			}
 		}
-		
-
 		return true;
 	}
 

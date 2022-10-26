@@ -4,7 +4,7 @@
 
 namespace Ethrl {
     void CameraComponent::Update() {
-        m_view = glm::lookAt(m_owner->m_transform.position, m_owner->m_transform.position + m_owner->m_transform.GetForward(), glm::vec3{0, 1, 0});
+        m_view = glm::lookAt(m_owner->m_transform.position, m_owner->m_transform.position + m_owner->m_transform.GetForward(), glm::vec3{ 0, 1, 0 });
     }
 
     void CameraComponent::SetPerspective(float fov, float aspectratio, float near, float far) {
