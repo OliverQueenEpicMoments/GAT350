@@ -27,6 +27,7 @@
 #include "Components/SpriteComponent.h"
 #include "Components/SpriteAnimComponent.h"
 #include "Components/TextComponent.h"
+#include "Components/LightComponent.h"
 #include "Components/TilemapComponent.h"
 #include "Components/CharacterComponent.h"
 #include "Components/CameraComponent.h"
