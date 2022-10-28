@@ -1,6 +1,6 @@
 {
 	"program":"shaders/basic_phong.prog",
-	"texture":"textures/Ogre_diffuse.bmp",
+	"texture":"textures/Skull.jpg",
 	"color":[
 		1,
 		1,

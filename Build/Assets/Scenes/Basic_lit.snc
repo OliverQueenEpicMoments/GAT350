@@ -23,7 +23,7 @@
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "Models/ogre.obj",
+          "model_name": "Models/Ogre.obj",
           "material_name": "Materials/Box.mtrl"
         }
       ]
@@ -36,7 +36,6 @@
           3,
           0,
           5
-
         ]
       },
       "components": [

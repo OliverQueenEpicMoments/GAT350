@@ -21,9 +21,9 @@ int main(int argc, char** argv) {
 		Ethrl::Engine::Instance().Update();
 		if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_escape) == Ethrl::InputSystem::KeyState::Pressed) Quit = true;
 
-        auto actor = Scene->GetActorFromName("Ogre");
-        if (actor) {
-            actor->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
+        auto Ogre = Scene->GetActorFromName("Ogre");
+        if (Ogre) {
+            Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
         }
 
         Scene->Update();

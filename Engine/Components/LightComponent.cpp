@@ -8,8 +8,10 @@ namespace Ethrl {
 
 		// get all programs in the resource system
 		auto programs = g_resources.Get<Program>();
+
 		// set programs light properties
 		for (auto& program : programs) {
+			program->SetUniform("light.ambient", glm::vec3{ 0.2f });
 			program->SetUniform("light.color", color);
 			program->SetUniform("light.position", position);
 		}

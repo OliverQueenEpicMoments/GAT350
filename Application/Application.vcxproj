@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Materials\Box.mtrl" />
+    <None Include="..\Build\Assets\Materials\Skull.mtrl" />
     <None Include="..\Build\Assets\Scenes\Basic.snc" />
     <None Include="..\Build\Assets\Scenes\Basic_lit.snc" />
     <None Include="..\Build\Assets\Shaders\basic.frag" />
@@ -36,6 +37,9 @@
     <None Include="..\Build\Assets\Shaders\basic_lit.frag" />
     <None Include="..\Build\Assets\Shaders\basic_lit.prog" />
     <None Include="..\Build\Assets\Shaders\basic_lit.vert" />
+    <None Include="..\Build\Assets\Shaders\basic_phong.frag" />
+    <None Include="..\Build\Assets\Shaders\basic_phong.prog" />
+    <None Include="..\Build\Assets\Shaders\basic_phong.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
