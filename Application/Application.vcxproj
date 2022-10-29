@@ -27,7 +27,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Build\Assets\Materials\AllSeeingEye.mtrl" />
     <None Include="..\Build\Assets\Materials\Box.mtrl" />
+    <None Include="..\Build\Assets\Materials\Floor.mtrl" />
+    <None Include="..\Build\Assets\Materials\House.mtrl" />
     <None Include="..\Build\Assets\Materials\Skull.mtrl" />
     <None Include="..\Build\Assets\Scenes\Basic.snc" />
     <None Include="..\Build\Assets\Scenes\Basic_lit.snc" />

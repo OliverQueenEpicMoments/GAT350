@@ -71,5 +71,14 @@
     <None Include="..\Build\Assets\Materials\Skull.mtrl">
       <Filter>Resource Files\Assets\Materials</Filter>
     </None>
+    <None Include="..\Build\Assets\Materials\House.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Floor.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\AllSeeingEye.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>

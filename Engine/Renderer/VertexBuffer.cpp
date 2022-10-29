@@ -37,6 +37,8 @@ namespace Ethrl {
 	}
 
 	void VertexBuffer::Draw(GLenum primitiveType) {
+        glBindVertexArray(m_vao);
+
         if (m_ibo) {
             glDrawElements(primitiveType, m_indexcount, m_indextype, 0);
         } else if (m_vbo) {

@@ -1,0 +1,10 @@
+{
+	"program":"shaders/basic_phong.prog",
+	"texture":"textures/Crate.png",
+	"color":[
+		1,
+		1,
+		1
+	],
+	"shininess":100
+}

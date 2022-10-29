@@ -1,0 +1,10 @@
+{
+	"program":"shaders/basic_phong.prog",
+	"texture":"textures/Eye.jpg",
+	"color":[
+		1,
+		1,
+		1
+	],
+	"shininess":100
+}
