@@ -26,6 +26,12 @@ int main(int argc, char** argv) {
             Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
         }
 
+        auto Light = Scene->GetActorFromName("Light");
+        if (Light) {
+            // move light and up/down using sin wave
+            Light->m_transform.position.y = std::sin(Ethrl::g_time.time * 5.0f) * 2.0f;
+        }
+
         Scene->Update();
 
 		Ethrl::g_renderer.BeginFrame();
