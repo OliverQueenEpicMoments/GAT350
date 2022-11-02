@@ -1,5 +1,6 @@
 #pragma once
 #include "Resource.h"
+#include "Core/Utilities.h"
 #include <vector>
 #include <map>
 #include <string>
@@ -26,19 +27,16 @@ namespace Ethrl {
 	};
 
 	template<typename T, typename ... TArgs>
-	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args)
-	{
-		if (m_resources.find(name) != m_resources.end())
-		{
+	inline std::shared_ptr<T> ResourceManager::Get(const std::string& name, TArgs... args) {
+        std::string LowerName = ToLower(name);
+		if (m_resources.find(LowerName) != m_resources.end()) {
 			// found
 			return std::dynamic_pointer_cast<T>(m_resources[name]);
-		}
-		else
-		{
+		} else {
 			// not found, create resource and enter into resources
 			std::shared_ptr<T> resource = std::make_shared<T>();
 			resource->Create(name, args...);
-			m_resources[name] = resource;
+			m_resources[LowerName] = resource;
 
 			return resource;
 		}
@@ -59,7 +57,6 @@ namespace Ethrl {
         return result;
     }
 }
-
 
 // vector [#,#,#,#] -> [#,#,#,#,#,#] 
 // [4] [#,#,#,#] :(

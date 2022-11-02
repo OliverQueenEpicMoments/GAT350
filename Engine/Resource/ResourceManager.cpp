@@ -1,16 +1,11 @@
 #include "ResourceManager.h"
 
-namespace Ethrl
-{
-	void ResourceManager::Initialize()
-	{
+namespace Ethrl {
+	void ResourceManager::Initialize() {
 		//
 	}
 
-	void ResourceManager::Shutdown()
-	{
+	void ResourceManager::Shutdown() {
 		m_resources.clear();
 	}
-
-
 }

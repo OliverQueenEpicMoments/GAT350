@@ -20,6 +20,9 @@ namespace Ethrl {
 		glm::vec3 color;
 		float shininess = 0;
 
+        glm::vec2 uv_tiling{ 1, 1 };
+        glm::vec2 uv_offset{ 0, 0 };
+
 	private:
 		std::shared_ptr<Program> m_program;
 		std::vector<std::shared_ptr<Texture>> m_textures;

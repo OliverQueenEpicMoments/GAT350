@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 	LOG("Window Initialized...");
 
     // Load scene
-    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Basic_lit.snc");
+    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Texture.snc");
 
 	bool Quit = false;
 	while (!Quit) {
@@ -23,13 +23,18 @@ int main(int argc, char** argv) {
 
         auto Ogre = Scene->GetActorFromName("Ogre");
         if (Ogre) {
-            Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
+            //Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
         }
 
         auto Light = Scene->GetActorFromName("Light");
         if (Light) {
             // move light and up/down using sin wave
-            Light->m_transform.position.y = std::sin(Ethrl::g_time.time * 5.0f) * 2.0f;
+            //Light->m_transform.position.y = std::sin(Ethrl::g_time.time * 5.0f) * 2.0f;
+        }
+
+        auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");
+        if (Material) {
+            Material->uv_offset += glm::vec2(Ethrl::g_time.deltaTime);
         }
 
         Scene->Update();

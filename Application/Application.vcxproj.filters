@@ -62,9 +62,6 @@
     <None Include="..\Build\Assets\Shaders\basic_phong.frag">
       <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
-    <None Include="..\Build\Assets\Shaders\basic_phong.prog">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
     <None Include="..\Build\Assets\Shaders\basic_phong.vert">
       <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
@@ -79,6 +76,24 @@
     </None>
     <None Include="..\Build\Assets\Materials\AllSeeingEye.mtrl">
       <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\Texture.snc">
+      <Filter>Resource Files\Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Multi.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\texture_phong.frag">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\texture_phong.prog">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\texture_phong.vert">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\basic_phong.prog">
+      <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

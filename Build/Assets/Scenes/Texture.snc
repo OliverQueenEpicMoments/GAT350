@@ -1,0 +1,193 @@
+{
+  "actors": [
+    {
+      "type": "Actor",
+      "name": "Ogre",
+      "transform": {
+        "position": [
+          2.5,
+          3,
+          4
+        ],
+        "scale": [
+          3,
+          3,
+          1
+        ],
+        "rotation": [
+          180,
+          180,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Quad.obj",
+          "material_name": "Materials/Multi.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Skull",
+      "transform": {
+        "position": [
+          -4,
+          0.25,
+          4
+        ],
+        "scale": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Skull2.obj",
+          "material_name": "Materials/Skull.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Floor",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          20,
+          20,
+          20
+        ],
+        "rotation": [
+          180,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Plane.obj",
+          "material_name": "Materials/Floor.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "House",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.25,
+          0.25,
+          0.25
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Cottage.obj",
+          "material_name": "Materials/House.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "EyeOfCthulhu",
+      "transform": {
+        "position": [
+          -0.5,
+          3,
+          3
+        ],
+        "scale": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "rotation": [
+          0,
+          250,
+          -60
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Eyeball.obj",
+          "material_name": "Materials/AllSeeingEye.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light",
+      "transform": {
+        "position": [
+          -4,
+          2,
+          5
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Camera",
+      "transform": {
+        "position": [
+          0,
+          1,
+          8
+        ],
+        "rotation": [
+          0,
+          180,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "CameraComponent",
+          "fov": 45,
+          "near": 0.1,
+          "far": 100
+        },
+        {
+          "type": "CameraController",
+          "speed": 4
+        }
+      ]
+    }
+  ]
+}
