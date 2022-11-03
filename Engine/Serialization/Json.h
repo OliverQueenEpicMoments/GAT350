@@ -22,6 +22,7 @@ namespace Ethrl
 		bool Get(const rapidjson::Value& value, const std::string& name, Vector2& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec2& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, Color& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, Rect& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data);

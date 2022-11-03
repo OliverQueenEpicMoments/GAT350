@@ -1,8 +1,9 @@
 #version 430 core
 
 in vec3 position;
-in vec3 normal;
+//in vec3 normal;
 in vec2 texcoords;
+in mat3 tbn;
 
 out vec4 fcolor; // Pixel to draw
 
@@ -23,8 +24,8 @@ uniform Light light;
 uniform Material material;
 
 layout (binding = 0) uniform sampler2D diffusemap;
-layout (binding = 1) uniform sampler2D specularmap;
-layout (binding = 2) uniform sampler2D emissivemap;
+layout (binding = 1) uniform sampler2D normalmap;
+//layout (binding = 2) uniform sampler2D emissivemap;
 
 void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular) {
     // Ambient
@@ -51,16 +52,20 @@ void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out 
 }
 
 void main() {
+    vec2 ttexcoords = (texcoords * material.uv_tiling) + material.uv_offset;
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
 
+    vec3 normal = texture(normalmap, ttexcoords).rgb;
+    normal = (normal * 2) - 1;
+    normal = normalize(tbn * normal);
+
     phong(position, normal, ambient, diffuse, specular);
 
-    vec2 ttexcoords = (texcoords * material.uv_tiling) + material.uv_offset;
     vec4 texture_color = texture(diffusemap, ttexcoords);
     //vec4 texture_color = mix(texture(diffusemap, ttexcoords), texture(specularmap, ttexcoords), 0.5);
 
-	//fcolor = vec4(ambient + diffuse, 1) * texture_color + (vec4(specular, 1) * texture(specularmap, ttexcoords));
-	fcolor = texture(emissivemap, ttexcoords) + vec4(ambient + diffuse, 1) * texture_color + (vec4(specular, 1) * texture(specularmap, ttexcoords));
+	//fcolor = texture_color;
+	fcolor = vec4(ambient + diffuse, 1) * texture_color + vec4(specular, 1);
 }

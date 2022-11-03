@@ -31,7 +31,7 @@ namespace Ethrl {
         std::string LowerName = ToLower(name);
 		if (m_resources.find(LowerName) != m_resources.end()) {
 			// found
-			return std::dynamic_pointer_cast<T>(m_resources[name]);
+			return std::dynamic_pointer_cast<T>(m_resources[LowerName]);
 		} else {
 			// not found, create resource and enter into resources
 			std::shared_ptr<T> resource = std::make_shared<T>();

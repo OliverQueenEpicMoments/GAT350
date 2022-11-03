@@ -39,6 +39,7 @@ namespace Ethrl {
 
             Vertex.Position = { mesh->mVertices[I].x, mesh->mVertices[I].y, mesh->mVertices[I].z };
             Vertex.Normal = { mesh->mNormals[I].x, mesh->mNormals[I].y, mesh->mNormals[I].z };
+            Vertex.Tangent = { mesh->mTangents[I].x, mesh->mTangents[I].y, mesh->mTangents[I].z };
 
             if (mesh->mTextureCoords[0]) {
                 Vertex.TexCoord = { mesh->mTextureCoords[0][I].x, mesh->mTextureCoords[0][I].y};
@@ -53,6 +54,7 @@ namespace Ethrl {
         m_vertexbuffer.SetAttribute(0, 3, sizeof(Vertex_T), 0);
         m_vertexbuffer.SetAttribute(1, 2, sizeof(Vertex_T), offsetof(Vertex_T, TexCoord));
         m_vertexbuffer.SetAttribute(2, 3, sizeof(Vertex_T), offsetof(Vertex_T, Normal));
+        m_vertexbuffer.SetAttribute(3, 3, sizeof(Vertex_T), offsetof(Vertex_T, Tangent));
 
         // Get model index vertices
         std::vector<GLuint> Indices;

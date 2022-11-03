@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
 
         auto Ogre = Scene->GetActorFromName("Ogre");
         if (Ogre) {
-            //Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
+            Ogre->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
         }
 
         auto Light = Scene->GetActorFromName("Light");
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
         auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");
         if (Material) {
-            Material->uv_offset += glm::vec2(Ethrl::g_time.deltaTime);
+            //Material->uv_offset += glm::vec2(Ethrl::g_time.deltaTime);
         }
 
         Scene->Update();
@@ -48,5 +48,5 @@ int main(int argc, char** argv) {
     Scene->RemoveAll();
 	Ethrl::Engine::Instance().Shutdown();
 
-	return 0;
+	return 0; // 38 minutes in the zoom
 }

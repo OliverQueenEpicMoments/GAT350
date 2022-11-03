@@ -19,9 +19,9 @@ namespace Ethrl {
         m_program = Ethrl::g_resources.Get<Ethrl::Program>(program);
 
         // Read the texture name 
-        std::string texture;
-        READ_DATA(document, texture);
-        if (!texture.empty()) {
+        std::vector<std::string> textures;
+        READ_DATA(document, textures);
+        for (auto texture : textures) {
             // Get texture resource
             m_textures.push_back(Ethrl::g_resources.Get<Ethrl::Texture>(texture));  
         }
@@ -44,8 +44,9 @@ namespace Ethrl {
         m_program->SetUniform("material.uv_tiling", uv_tiling);
         m_program->SetUniform("material.uv_offset", uv_offset);
 
-        for (auto& texture : m_textures) {
-            texture->Bind();
+        for (size_t I = 0; I < m_textures.size(); I++) {
+            m_textures[I]->SetActive(GL_TEXTURE0 + (int)I);
+            m_textures[I]->Bind();
         }
     }
 }

@@ -95,5 +95,14 @@
     <None Include="..\Build\Assets\Shaders\basic_phong.prog">
       <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.frag">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.prog">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\normal_phong.vert">
+      <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
