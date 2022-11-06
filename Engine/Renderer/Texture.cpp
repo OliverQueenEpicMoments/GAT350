@@ -45,8 +45,12 @@ namespace Ethrl {
         glGenTextures(1, &m_texture);
         glBindTexture(m_target, m_texture);
 
-        GLenum format = (surface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-        glTexImage2D(m_target, 0, format, surface->w, surface->h, 0, format, GL_UNSIGNED_BYTE, surface->pixels);
+        LOG("%s : width = %d | height = %d | pixel format = %s", filename.c_str(), surface->w, surface->h, SDL_GetPixelFormatName(surface->format->format));
+
+        GLenum InternalFormat = GetInternalFormat(surface->format->format);
+        GLint format = (surface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+
+        glTexImage2D(m_target, 0, format, surface->w, surface->h, 0, InternalFormat, GL_UNSIGNED_BYTE, surface->pixels);
 
         glTexParameteri(m_target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(m_target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -58,6 +62,29 @@ namespace Ethrl {
         SDL_FreeSurface(surface);
 
         return true;
+    }
+
+    GLenum Texture::GetInternalFormat(GLuint format) {
+        GLenum InternalFormat = SDL_PIXELFORMAT_UNKNOWN;
+        switch (format) {
+        case SDL_PIXELFORMAT_RGB888:
+        case SDL_PIXELFORMAT_RGB24:
+            InternalFormat = GL_RGB;
+            break;
+        case SDL_PIXELFORMAT_BGR888:
+        case SDL_PIXELFORMAT_BGR24:
+            InternalFormat = GL_BGR;
+            break;
+        case SDL_PIXELFORMAT_RGBA8888:
+        case SDL_PIXELFORMAT_RGBA32:
+            InternalFormat = GL_RGBA;
+            break;
+        case SDL_PIXELFORMAT_BGRA8888:
+        case SDL_PIXELFORMAT_BGRA32:
+            InternalFormat = GL_BGRA;
+            break;
+        }
+        return InternalFormat;
     }
 
     Ethrl::Vector2 Texture::GetSize() const {
