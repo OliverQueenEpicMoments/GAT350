@@ -135,7 +135,6 @@ namespace Ethrl {
             }
             m_uniforms[Name] = location;
         }
-
         return m_uniforms[Name];
     }
 }

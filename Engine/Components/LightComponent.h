@@ -4,6 +4,12 @@
 namespace Ethrl {
 	class LightComponent : public Component	{
 	public:
+        enum class Type {
+            Point,
+            Directional,
+            Spot
+        };
+
 		CLASS_DECLARATION(LightComponent)
 
 		void Update() override;
@@ -13,5 +19,8 @@ namespace Ethrl {
 
 	public:
 		glm::vec3 color{ 0 };
+        Type type = Type::Point;
+        float cutoff = 45.0f;
+        float exponent = 50.0f;
 	};
 }

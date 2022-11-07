@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
         auto Light = Scene->GetActorFromName("Light");
         if (Light) {
             // move light using sin wave
-            Light->m_transform.position.y = std::sin(Ethrl::g_time.time);
+            //Light->m_transform.position.z = std::sin(Ethrl::g_time.time);
         }
 
         auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");
@@ -48,5 +48,5 @@ int main(int argc, char** argv) {
     Scene->RemoveAll();
 	Ethrl::Engine::Instance().Shutdown();
 
-	return 0; // 38 minutes in the zoom
+	return 0;
 }

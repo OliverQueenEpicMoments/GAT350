@@ -33,9 +33,14 @@
       "name": "Light",
       "transform": {
         "position": [
-          1,
           0,
-          2
+          1,
+          0.5
+        ],
+        "rotation": [
+          85,
+          0,
+          0
         ]
       },
       "components": [
@@ -45,7 +50,10 @@
             1,
             1,
             1
-          ]
+          ],
+          "type_name": "point",
+          "cutoff": 45.0,
+          "exponent": 50.0
         }
       ]
     },

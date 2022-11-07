@@ -1,5 +1,9 @@
 #version 430 core
 
+#define POINT 0
+#define DIRECTIONAL 1
+#define SPOTLIGHT 2
+
 in vec3 position;
 in vec3 normal;
 in vec2 texcoords;
@@ -7,9 +11,13 @@ in vec2 texcoords;
 out vec4 fcolor; // Pixel to draw
 
 struct Light {
+    int type;
     vec3 ambient;
     vec3 color;
     vec4 position;
+    vec3 direction;
+    float cutoff;
+    float exponent;
 };
 
 struct Material {
@@ -30,12 +38,23 @@ void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out 
     // Ambient
     ambient = light.ambient * material.color;
 
-    // Diffuse
-    // Calculate light direction (Unit vector)
-    vec3 light_dir = normalize(vec3(light.position) - position);
+    // Direction vector to light
+    vec3 light_dir = (light.type == DIRECTIONAL) ? normalize(-light.direction) : normalize(vec3(light.position) - position);
+
+    // If spotlight, compute intensity based on angle to cutoff
+    float spot_intensity = 1;
+    if (light.type == SPOTLIGHT) {
+        // Get cosin of light direction and direction vector from light
+        float cosine = dot(light.direction, -light_dir);
+        // Get angle using acos() of the cosine (returns the angle)
+        float angle = acos(cosine);
+
+        // If angle less than light.cutoff, set spot intensity else set to 0 (outside)
+        spot_intensity = (angle < light.cutoff) ? pow(cosine, light.exponent) : 0;
+    }
 
     // Calculate light intensity with dot product (Normal * Light direction)
-    float intensity = max(dot(light_dir, normal), 0);
+    float intensity = max(dot(light_dir, normal), 0) * spot_intensity;
     diffuse = light.color * intensity;
 
     // Specular
