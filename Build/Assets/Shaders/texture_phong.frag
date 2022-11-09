@@ -10,7 +10,7 @@ in vec2 texcoords;
 
 out vec4 fcolor; // Pixel to draw
 
-struct Light {
+uniform struct Light {
     int type;
     vec3 ambient;
     vec3 color;
@@ -18,21 +18,18 @@ struct Light {
     vec3 direction;
     float cutoff;
     float exponent;
-};
+} light;
 
-struct Material {
+uniform struct Material {
     vec3 color;
     float shininess;
     vec2 uv_tiling;
     vec2 uv_offset;
-};
-
-uniform Light light;
-uniform Material material;
+} material;
 
 layout (binding = 0) uniform sampler2D diffusemap;
-layout (binding = 1) uniform sampler2D specularmap;
-layout (binding = 2) uniform sampler2D emissivemap;
+//layout (binding = 1) uniform sampler2D specularmap;
+//layout (binding = 2) uniform sampler2D emissivemap;
 
 void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 specular) {
     // Ambient
@@ -55,7 +52,7 @@ void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out 
 
     // Calculate light intensity with dot product (Normal * Light direction)
     float intensity = max(dot(light_dir, normal), 0) * spot_intensity;
-    diffuse = light.color * intensity;
+    diffuse = light.color * material.color * intensity;
 
     // Specular
     specular = vec3(0);
@@ -81,5 +78,5 @@ void main() {
     //vec4 texture_color = mix(texture(diffusemap, ttexcoords), texture(specularmap, ttexcoords), 0.5);
 
 	//fcolor = vec4(ambient + diffuse, 1) * texture_color + (vec4(specular, 1) * texture(specularmap, ttexcoords));
-	fcolor = texture(emissivemap, ttexcoords) + vec4(ambient + diffuse, 1) * texture_color + (vec4(specular, 1) * texture(specularmap, ttexcoords));
+	fcolor = vec4(ambient + diffuse, 1) * texture_color + vec4(specular, 1);
 }

@@ -30,6 +30,7 @@ int main(int argc, char** argv) {
         if (Light) {
             // move light using sin wave
             //Light->m_transform.position.z = std::sin(Ethrl::g_time.time);
+            //Light->m_transform.position.x = std::sin(Ethrl::g_time.time);
         }
 
         auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");

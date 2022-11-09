@@ -5,7 +5,6 @@ namespace Ethrl {
 	void LightComponent::Update() {
 		// transform the light position by the view, puts light in model view space
 		glm::vec4 position = g_renderer.GetView() * glm::vec4(m_owner->m_transform.position, 1);
-
         glm::vec3 direction = m_owner->m_transform.GetForward();
 
 		// get all programs in the resource system
@@ -13,6 +12,7 @@ namespace Ethrl {
 
 		// set programs light properties
 		for (auto& program : programs) {
+            program->Use();
 			program->SetUniform("light.type", (int)type);
 			program->SetUniform("light.ambient", glm::vec3{ 0.2f });
 			program->SetUniform("light.color", color);
@@ -28,6 +28,10 @@ namespace Ethrl {
 	}
 
 	bool LightComponent::Read(const rapidjson::Value& value) {
+        READ_DATA(value, color);
+        READ_DATA(value, cutoff);
+        READ_DATA(value, exponent);
+
         std::string type_name;
 		READ_DATA(value, type_name);
         if (CompareIgnoreCase(type_name, "directional")) {
@@ -37,9 +41,6 @@ namespace Ethrl {
         } else {
             type = Type::Point;
         }
-
-        READ_DATA(value, color);
-
 		return true;
 	}
 }

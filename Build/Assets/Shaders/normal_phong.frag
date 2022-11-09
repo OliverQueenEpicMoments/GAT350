@@ -11,7 +11,7 @@ in mat3 tbn;
 
 out vec4 fcolor; // Pixel to draw
 
-struct Light {
+uniform struct Light {
     int type;
     vec3 ambient;
     vec3 color;
@@ -19,17 +19,14 @@ struct Light {
     vec3 direction;
     float cutoff;
     float exponent;
-};
+} light;
 
-struct Material {
+uniform struct Material {
     vec3 color;
     float shininess;
     vec2 uv_tiling;
     vec2 uv_offset;
-};
-
-uniform Light light;
-uniform Material material;
+} material;
 
 layout (binding = 0) uniform sampler2D diffusemap;
 layout (binding = 1) uniform sampler2D normalmap;
@@ -56,7 +53,7 @@ void phong (vec3 position, vec3 normal, out vec3 ambient, out vec3 diffuse, out 
 
     // Calculate light intensity with dot product (Normal * Light direction)
     float intensity = max(dot(light_dir, normal), 0) * spot_intensity;
-    diffuse = light.color * intensity;
+    diffuse = light.color * material.color * intensity; // Remove/Add material color?
 
     // Specular
     specular = vec3(0);

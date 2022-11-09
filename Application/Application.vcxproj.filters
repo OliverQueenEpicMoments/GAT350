@@ -25,6 +25,15 @@
     <Filter Include="Resource Files\Assets\Shaders">
       <UniqueIdentifier>{fc252c91-7bd8-4f04-891b-40e41479fd73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\FX">
+      <UniqueIdentifier>{d011e0f2-18bb-4b63-982f-603e11b639d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\Lit">
+      <UniqueIdentifier>{a78b392b-5bb8-42c4-b665-d3149828a6f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\Unlit">
+      <UniqueIdentifier>{bd798c81-1be0-4ff2-85f3-124f020d948f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -103,6 +112,21 @@
     </None>
     <None Include="..\Build\Assets\Shaders\normal_phong.vert">
       <Filter>Resource Files\Assets\Shaders</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\MantisShrimp.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Octopus.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\SkullEmoji.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Sloth.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Heisenbones.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
     </None>
   </ItemGroup>
 </Project>

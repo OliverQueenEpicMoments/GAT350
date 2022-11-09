@@ -41,6 +41,12 @@ namespace Ethrl {
             Vertex.Normal = { mesh->mNormals[I].x, mesh->mNormals[I].y, mesh->mNormals[I].z };
             Vertex.Tangent = { mesh->mTangents[I].x, mesh->mTangents[I].y, mesh->mTangents[I].z };
 
+            if (mesh->mTangents) {
+                Vertex.Tangent = { mesh->mTangents[I].x, mesh->mTangents[I].y, mesh->mTangents[I].z };
+            } else {
+                Vertex.Tangent = { 0, 0, 0 };
+            }
+
             if (mesh->mTextureCoords[0]) {
                 Vertex.TexCoord = { mesh->mTextureCoords[0][I].x, mesh->mTextureCoords[0][I].y};
             } else {

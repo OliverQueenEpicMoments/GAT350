@@ -16,10 +16,8 @@ namespace Ethrl {
             LOG("Error loading scene fine %s", name);
             return false;
         }
-        else {
-            Read(document);
-            Initialize();
-        }
+        Read(document);
+        Initialize();
         return true;
     }
 
