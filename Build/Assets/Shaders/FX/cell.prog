@@ -1,0 +1,4 @@
+{
+	"vertex_shader": "shaders/FX/cell.vert",
+	"fragment_shader": "shaders/FX/cell.frag"
+}

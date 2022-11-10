@@ -30,13 +30,13 @@ int main(int argc, char** argv) {
         if (Light) {
             // move light using sin wave
             //Light->m_transform.position.z = std::sin(Ethrl::g_time.time);
-            //Light->m_transform.position.x = std::sin(Ethrl::g_time.time);
+            Light->m_transform.position.x = std::sin(Ethrl::g_time.time);
         }
 
-        auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");
+        /*auto Material = Ethrl::g_resources.Get<Ethrl::Material>("Materials/Multi.mtrl");
         if (Material) {
-            //Material->uv_offset += glm::vec2(Ethrl::g_time.deltaTime);
-        }
+            Material->uv_offset += glm::vec2(Ethrl::g_time.deltaTime);
+        }*/
 
         Scene->Update();
 

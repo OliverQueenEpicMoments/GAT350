@@ -1,10 +1,10 @@
 {
-	"program":"shaders/normal_phong.prog",
+  "program": "shaders/Lit/texture_normal.prog",
   "textures": [ "textures/MantisShrimpDiffuse.png", "textures/MantisShrimpNormal.png" ],
-	"color":[
-		1,
-		1,
-		1
-	],
-	"shininess":100
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 100
 }

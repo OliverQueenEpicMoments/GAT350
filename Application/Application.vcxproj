@@ -50,12 +50,21 @@
     <None Include="..\Build\Assets\Shaders\basic_phong.frag" />
     <None Include="..\Build\Assets\Shaders\basic_phong.prog" />
     <None Include="..\Build\Assets\Shaders\basic_phong.vert" />
-    <None Include="..\Build\Assets\Shaders\normal_phong.frag" />
-    <None Include="..\Build\Assets\Shaders\normal_phong.prog" />
-    <None Include="..\Build\Assets\Shaders\normal_phong.vert" />
-    <None Include="..\Build\Assets\Shaders\texture_phong.frag" />
-    <None Include="..\Build\Assets\Shaders\texture_phong.prog" />
-    <None Include="..\Build\Assets\Shaders\texture_phong.vert" />
+    <None Include="..\Build\Assets\Shaders\FX\cell.frag" />
+    <None Include="..\Build\Assets\Shaders\FX\cell.prog" />
+    <None Include="..\Build\Assets\Shaders\FX\cell.vert" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture.frag" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture.prog" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture.vert" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.frag" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.prog" />
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.vert" />
+    <None Include="..\Build\Assets\Shaders\Unlit\color.frag" />
+    <None Include="..\Build\Assets\Shaders\Unlit\color.prog" />
+    <None Include="..\Build\Assets\Shaders\Unlit\color.vert" />
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.frag" />
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.prog" />
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.vert" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

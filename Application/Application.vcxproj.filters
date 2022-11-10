@@ -92,25 +92,7 @@
     <None Include="..\Build\Assets\Materials\Multi.mtrl">
       <Filter>Resource Files\Assets\Materials</Filter>
     </None>
-    <None Include="..\Build\Assets\Shaders\texture_phong.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="..\Build\Assets\Shaders\texture_phong.prog">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="..\Build\Assets\Shaders\texture_phong.vert">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
     <None Include="..\Build\Assets\Shaders\basic_phong.prog">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="..\Build\Assets\Shaders\normal_phong.frag">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="..\Build\Assets\Shaders\normal_phong.prog">
-      <Filter>Resource Files\Assets\Shaders</Filter>
-    </None>
-    <None Include="..\Build\Assets\Shaders\normal_phong.vert">
       <Filter>Resource Files\Assets\Shaders</Filter>
     </None>
     <None Include="..\Build\Assets\Materials\MantisShrimp.mtrl">
@@ -127,6 +109,51 @@
     </None>
     <None Include="..\Build\Assets\Materials\Heisenbones.mtrl">
       <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture.frag">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture.prog">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture.vert">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.frag">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.prog">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Lit\texture_normal.vert">
+      <Filter>Resource Files\Assets\Shaders\Lit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\color.frag">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\color.prog">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\color.vert">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.frag">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.prog">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\Unlit\texture.vert">
+      <Filter>Resource Files\Assets\Shaders\Unlit</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\cell.frag">
+      <Filter>Resource Files\Assets\Shaders\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\cell.prog">
+      <Filter>Resource Files\Assets\Shaders\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\FX\cell.vert">
+      <Filter>Resource Files\Assets\Shaders\FX</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 namespace Ethrl {
     class CameraController : public Component {
     public:
-        CLASS_DECLARATION(CameraController);
+        CLASS_DECLARATION(CameraController)
 
         virtual void Update() override;
 

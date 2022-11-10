@@ -17,7 +17,7 @@ void main() {
     mat4 model_view = view * model;
 
     // Transform normals to view space
-    normal = mat3(model_view) * vnormal;
+    normal = normalize(mat3(model_view) * vnormal);
 
     // Transform positions to view space
     position = vec3(model_view * vec4(vposition, 1));

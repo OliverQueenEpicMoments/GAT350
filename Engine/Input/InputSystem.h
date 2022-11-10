@@ -72,4 +72,6 @@ namespace Ethrl
     extern const uint32_t key_a;
     extern const uint32_t key_s;
     extern const uint32_t key_d;
+    extern const uint32_t key_q;
+    extern const uint32_t key_e;
 }
