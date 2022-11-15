@@ -172,6 +172,28 @@ namespace Ethrl::json
         return true;
 	}
 
+	bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data) {
+        if (!value.HasMember(name.c_str())) return false;
+
+        // check if 'name' member exists and is an array with 4 elements
+        if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4) {
+            LOG("error reading json data %s", name.c_str());
+            return false;
+        }
+
+        // create json array object
+        auto& array = value[name.c_str()];
+        // get array values
+        for (rapidjson::SizeType i = 0; i < array.Size(); i++) {
+            if (!array[i].IsNumber()) {
+                LOG("error reading json data (not a float) %s", name.c_str());
+                return false;
+            }
+            data[i] = array[i].GetFloat();
+        }
+        return true;
+	}
+
 	bool Get(const rapidjson::Value& value, const std::string& name, Color& data)
 	{
 		if (!value.HasMember(name.c_str())) return false;

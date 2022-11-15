@@ -47,7 +47,7 @@ namespace Ethrl {
 	}
 
 	void Renderer::BeginFrame() {
-		glClearColor(0.25, 0, 0, 1);
+		glClearColor(clear_color.r, clear_color.g, clear_color.b, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 

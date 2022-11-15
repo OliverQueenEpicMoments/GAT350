@@ -2,6 +2,7 @@
 #include "Framework/Component.h"
 
 namespace Ethrl {
+    class Program;
 	class LightComponent : public Component	{
 	public:
         enum class Type {
@@ -13,6 +14,7 @@ namespace Ethrl {
 		CLASS_DECLARATION(LightComponent)
 
 		void Update() override;
+        void SetProgram(std::shared_ptr<Program> program, int index);
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;

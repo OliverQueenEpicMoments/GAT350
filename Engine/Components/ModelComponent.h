@@ -19,5 +19,6 @@ namespace Ethrl {
 	public:
 		std::shared_ptr<Model> model;
 		std::shared_ptr<Material> material;
+        bool depth_test = true;
 	};
 }

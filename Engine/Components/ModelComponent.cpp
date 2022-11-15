@@ -12,11 +12,10 @@ namespace Ethrl {
 	void ModelComponent::Draw(Renderer& renderer) {
         material->Bind();
 
-        // Set MVP matrix for model
+        // Set model matrix (Transform to world space)
         material->GetProgram()->SetUniform("model", (glm::mat4)m_owner->m_transform);
-        material->GetProgram()->SetUniform("view", renderer.GetView());
-        material->GetProgram()->SetUniform("projection", renderer.GetProjection());
 
+        glDepthMask(depth_test);
         model->m_vertexbuffer.Draw();
 	}
 
@@ -38,6 +37,8 @@ namespace Ethrl {
 
         // Get material from material name
         material = g_resources.Get<Material>(material_name);
+
+        READ_DATA(value, depth_test);
 
 		return true;
 	}

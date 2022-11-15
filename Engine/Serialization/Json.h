@@ -5,9 +5,9 @@
 #include <vector>
 
 #define READ_DATA(value, data) Ethrl::json::Get(value, #data, data)
+#define READ_NAME_DATA(value, name, data) Ethrl::json::Get(value, name, data)
 
-namespace Ethrl
-{
+namespace Ethrl {
 	struct Vector2;
 	struct Color;
 	struct Rect;

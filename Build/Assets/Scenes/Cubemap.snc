@@ -12,57 +12,13 @@
   "actors": [
     {
       "type": "Actor",
-      "name": "Octopus",
-      "transform": {
-        "position": [
-          1.5,
-          0,
-          0
-        ],
-        "scale": [
-          0.3,
-          0.3,
-          0.3
-        ],
-        "rotation": [
-          0,
-          0,
-          0
-        ]
-      },
+      "name": "Skybox",
       "components": [
         {
           "type": "ModelComponent",
-          "model_name": "Models/Octopus.glb",
-          "material_name": "Materials/Octopus.mtrl"
-        }
-      ]
-    },
-    {
-      "type": "Actor",
-      "name": "MantisShrimp",
-      "transform": {
-        "position": [
-          -1,
-          0,
-          0
-        ],
-        "scale": [
-          0.35,
-          0.35,
-          0.35
-        ],
-        "rotation": [
-          0,
-          0,
-          0
-        ]
-      },
-      "components": [
-        {
-          "type": "ModelComponent",
-          "model_name": "Models/MantisShrimp.glb",
-          "material_name": "Materials/MantisShrimp.mtrl"
+          "model_name": "Models/cube.obj",
+          "material_name": "Materials/Skybox.mtrl",
+          "depth_test": false
         }
       ]
     },

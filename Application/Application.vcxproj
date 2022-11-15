@@ -37,9 +37,11 @@
     <None Include="..\Build\Assets\Materials\Octopus.mtrl" />
     <None Include="..\Build\Assets\Materials\Skull.mtrl" />
     <None Include="..\Build\Assets\Materials\SkullEmoji.mtrl" />
+    <None Include="..\Build\Assets\Materials\Skybox.mtrl" />
     <None Include="..\Build\Assets\Materials\Sloth.mtrl" />
     <None Include="..\Build\Assets\Scenes\Basic.snc" />
     <None Include="..\Build\Assets\Scenes\Basic_lit.snc" />
+    <None Include="..\Build\Assets\Scenes\Cubemap.snc" />
     <None Include="..\Build\Assets\Scenes\Texture.snc" />
     <None Include="..\Build\Assets\Shaders\basic.frag" />
     <None Include="..\Build\Assets\Shaders\basic.prog" />
@@ -53,6 +55,9 @@
     <None Include="..\Build\Assets\Shaders\FX\cell.frag" />
     <None Include="..\Build\Assets\Shaders\FX\cell.prog" />
     <None Include="..\Build\Assets\Shaders\FX\cell.vert" />
+    <None Include="..\Build\Assets\Shaders\FX\Skybox.frag" />
+    <None Include="..\Build\Assets\Shaders\FX\Skybox.prog" />
+    <None Include="..\Build\Assets\Shaders\FX\Skybox.vert" />
     <None Include="..\Build\Assets\Shaders\Lit\texture.frag" />
     <None Include="..\Build\Assets\Shaders\Lit\texture.prog" />
     <None Include="..\Build\Assets\Shaders\Lit\texture.vert" />

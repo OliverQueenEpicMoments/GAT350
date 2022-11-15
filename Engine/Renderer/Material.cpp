@@ -15,6 +15,15 @@ namespace Ethrl {
         std::string program;
         READ_DATA(document, program);
 
+        // read cube map
+        std::string cubemap;
+        READ_DATA(document, cubemap);
+        if (!cubemap.empty()) {
+            std::string cubemap_extension;
+            READ_DATA(document, cubemap_extension);
+            m_textures.push_back(Ethrl ::g_resources.Get<Ethrl::CubemapTexture>(cubemap, cubemap_extension));
+        }
+
         // Get program resource
         m_program = Ethrl::g_resources.Get<Ethrl::Program>(program);
 

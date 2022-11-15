@@ -22,7 +22,8 @@ namespace Ethrl {
 		void Initialize() override;
         virtual bool Create(std::string name, ...) override;
 		void Update() override;
-		void Draw(Renderer& renderer);
+		void PreRender(Renderer& renderer);
+		void Render(Renderer& renderer);
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;

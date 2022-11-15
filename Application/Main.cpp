@@ -15,12 +15,10 @@ int main(int argc, char** argv) {
     Ethrl::g_gui.Initialize(Ethrl::g_renderer);
 
     // Load scene
-    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Texture.snc");
+    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Cubemap.snc");
 
     glm::vec3 Position = { 0, 0, 0 };
-    float X = 0;
-    float Y = 0;
-    float Z = 0;
+    glm::vec3 Position2 = { 0, 0, 0 };
 	bool Quit = false;
 	while (!Quit) {
 		Ethrl::Engine::Instance().Update();
@@ -39,15 +37,26 @@ int main(int argc, char** argv) {
             Light->m_transform.position = Position;
         }
 
+        auto Light2 = Scene->GetActorFromName("Light2");
+        if (Light2) {
+            // move light using sliders
+            Light2->m_transform.position = Position2;
+        }
+
         ImGui::Begin("Hello");
         ImGui::SliderFloat3("Light Position", &Position[0], -5, 5);
+        ImGui::End();
+
+        ImGui::Begin("Hello 2");
+        ImGui::SliderFloat3("Light2 Position", &Position2[0], -5, 5);
         ImGui::End();
 
         Scene->Update();
 
 		Ethrl::g_renderer.BeginFrame();
 
-        Scene->Draw(Ethrl::g_renderer);
+        Scene->PreRender(Ethrl::g_renderer);
+        Scene->Render(Ethrl::g_renderer);
         Ethrl::g_gui.Draw();
 
 		Ethrl::g_renderer.EndFrame();

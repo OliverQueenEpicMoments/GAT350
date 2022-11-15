@@ -1,5 +1,5 @@
 {
-  "program": "shaders/FX/cell.prog",
+  "program": "shaders/lit/texture_normal.prog",
   "textures": [ "textures/HeisenbonesDiffuse.png", "textures/HeisenbonesNormal.png" ],
   "color": [
     1,
