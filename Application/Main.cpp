@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
     Ethrl::g_gui.Initialize(Ethrl::g_renderer);
 
     // Load scene
-    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Cubemap.snc");
+    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Texture.snc");
 
     glm::vec3 Position = { 0, 0, 0 };
     glm::vec3 Position2 = { 0, 0, 0 };

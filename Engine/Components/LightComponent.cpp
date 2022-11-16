@@ -17,12 +17,11 @@ namespace Ethrl {
         // set programs light properties
         program->Use();
         program->SetUniform(lightname + ".type", (int)type);
-        program->SetUniform("light.type", (int)type);
-        program->SetUniform("light.color", color);
-        program->SetUniform("light.position", position);
-        program->SetUniform("light.direction", direction);
-        program->SetUniform("light.cutoff", glm::radians(cutoff));
-        program->SetUniform("light.exponent", exponent);
+        program->SetUniform(lightname + ".color", color);
+        program->SetUniform(lightname + ".position", position);
+        program->SetUniform(lightname + ".direction", direction);
+        program->SetUniform(lightname + ".cutoff", glm::radians(cutoff));
+        program->SetUniform(lightname + ".exponent", exponent);
 	}
 
 	bool LightComponent::Write(const rapidjson::Value& value) const {

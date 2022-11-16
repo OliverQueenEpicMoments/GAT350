@@ -97,7 +97,7 @@
     {
       "type": "Actor",
       "name": "Light",
-      "active": false,
+      "active": true,
       "transform": {
         "position": [
           0,
@@ -138,8 +138,8 @@
         {
           "type": "LightComponent",
           "color": [
-            1,
-            1,
+            0,
+            0,
             1
           ],
           "type_name": "point",
