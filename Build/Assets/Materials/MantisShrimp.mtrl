@@ -1,5 +1,5 @@
 {
-  "program": "shaders/lit/texture.prog",
+  "program": "shaders/lit/texture_normal.prog",
   "textures": [ "textures/MantisShrimpDiffuse.png", "textures/MantisShrimpNormal.png" ],
   "color": [
     1,
