@@ -53,7 +53,7 @@
     {
       "type": "Actor",
       "name": "Light",
-      "active": false,
+      "active": true,
       "transform": {
         "position": [
           0,

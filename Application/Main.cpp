@@ -17,6 +17,7 @@ int main(int argc, char** argv) {
     // Load scene
     auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Cubemap.snc");
 
+    glm::vec3 Rotation = { 0, 0, 0 };
     glm::vec3 Position = { 0, 0, 0 };
     glm::vec3 Position2 = { 0, 0, 0 };
 	bool Quit = false;
@@ -28,7 +29,7 @@ int main(int argc, char** argv) {
 
         auto Actor = Scene->GetActorFromName("Heisenbones");
         if (Actor) {
-            //Actor->m_transform.rotation.y += Ethrl::g_time.deltaTime * 90.0f;
+            Actor->m_transform.rotation = math::EulerToQuaternion(Rotation);
         }
 
         auto Light = Scene->GetActorFromName("Light");
@@ -43,11 +44,15 @@ int main(int argc, char** argv) {
             Light2->m_transform.position = Position2;
         }
 
-        ImGui::Begin("Hello");
+        ImGui::Begin("Bruh");
+        ImGui::SliderFloat3("Rotation", &Rotation[0], -360, 360);
+        ImGui::End();
+
+        ImGui::Begin("Brah");
         ImGui::SliderFloat3("Light Position", &Position[0], -5, 5);
         ImGui::End();
 
-        ImGui::Begin("Hello 2");
+        ImGui::Begin("Breh");
         ImGui::SliderFloat3("Light2 Position", &Position2[0], -5, 5);
         ImGui::End();
 

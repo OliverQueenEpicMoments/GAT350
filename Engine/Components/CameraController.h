@@ -6,12 +6,18 @@ namespace Ethrl {
     public:
         CLASS_DECLARATION(CameraController)
 
-        virtual void Update() override;
+        void Initialize() override;
+        void Update() override;
 
         virtual bool Write(const rapidjson::Value& value) const override;
         virtual bool Read(const rapidjson::Value& value) override;
 
-    private:
+    public:
+        float sensitivity = 0.25f;
         float speed = 0;
+
+    private:
+        float m_yaw = 0;
+        float m_pitch = 0;
     };
 }

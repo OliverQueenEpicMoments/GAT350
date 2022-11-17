@@ -2,18 +2,43 @@
 #include "Engine.h"
 
 namespace Ethrl {
+    void CameraController::Initialize() {
+        glm::vec3 v = math::QuaternionToEuler(m_owner->m_transform.rotation);
+        m_pitch = v.x;
+        m_yaw = v.y;
+    }
+
     void CameraController::Update() {
-        // Update transform
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_left) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.x -= speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_right) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.x += speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_up) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.y += speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_down) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.y -= speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_s) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.z += speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_w) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.z -= speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_a) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.x -= speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_d) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.x += speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_e) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.y += speed * Ethrl::g_time.deltaTime;
-        if (Ethrl::g_inputSystem.GetKeyState(Ethrl::key_q) == Ethrl::InputSystem::KeyState::Held) m_owner->m_transform.position.y -= speed * Ethrl::g_time.deltaTime;
+        // get camera rotation
+        if (g_inputSystem.GetButtonState(2) == InputSystem::KeyState::Held) {
+            glm::vec2 axis = g_inputSystem.GetMouseRelative() * sensitivity;
+
+            m_yaw += axis.x;
+            m_pitch -= axis.y;
+            m_pitch = glm::clamp(m_pitch, -89.0f, 89.0f);
+        }
+
+        glm::quat qpitch = glm::angleAxis(glm::radians(m_pitch), glm::vec3{ 1, 0, 0 });
+        glm::quat qyaw = glm::angleAxis(glm::radians(m_yaw), glm::vec3{ 0, 1, 0 });
+
+        glm::quat q = qpitch * qyaw;
+        glm::vec3 forward = q * glm::vec3{ 0, 0, 1 };
+
+        glm::mat4 view = glm::lookAt(glm::vec3{ 0.0f }, forward, glm::vec3{ 0, 1, 0 });
+        m_owner->m_transform.rotation = glm::quat_cast(view);
+
+        glm::vec3 direction{ 0 };
+
+        if (g_inputSystem.GetKeyState(key_a) == InputSystem::KeyState::Held)	direction.x += 1;
+        if (g_inputSystem.GetKeyState(key_d) == InputSystem::KeyState::Held)	direction.x -= 1;
+        if (g_inputSystem.GetKeyState(key_q) == InputSystem::KeyState::Held)	direction.y += 1;
+        if (g_inputSystem.GetKeyState(key_e) == InputSystem::KeyState::Held)	direction.y -= 1;
+        if (g_inputSystem.GetKeyState(key_w) == InputSystem::KeyState::Held)	direction.z += 1;
+        if (g_inputSystem.GetKeyState(key_s) == InputSystem::KeyState::Held)	direction.z -= 1;
+
+        // convert world direction space to camera direction space
+        direction = m_owner->m_transform.rotation * direction;
+        m_owner->m_transform.position += direction * (speed * g_time.deltaTime);
     }
 
     bool CameraController::Write(const rapidjson::Value& value) const {

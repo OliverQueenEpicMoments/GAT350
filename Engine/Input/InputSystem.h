@@ -5,14 +5,12 @@
 #include <map>
 #include <array>
 #include <string>
+#include "Math/MathUtils.h"
 
-namespace Ethrl
-{
-	class InputSystem
-	{
+namespace Ethrl {
+	class InputSystem {
 	public:
-		enum class KeyState
-		{
+		enum class KeyState {
 			Idle,
 			Pressed,
 			Held,
@@ -37,7 +35,8 @@ namespace Ethrl
 		bool GetPreviousKeyDown(uint32_t key) { return m_prevKeyboardState[key]; }
 		bool GetPreviousKeyDown(const std::string& key);
 
-		const Vector2& GetMousePosition() const { return m_mousePosition; }
+        const glm::vec2& GetMousePosition() const { return m_mousePosition; }
+        const glm::vec2& GetMouseRelative() const { return m_mouseRelative; }
 		
 		KeyState GetButtonState(uint32_t button);
 		bool GetButtonDown(uint32_t button) { return m_mouseButtonState[button]; }
@@ -49,7 +48,9 @@ namespace Ethrl
 		std::vector<uint8_t> m_prevKeyboardState;
 
 		// mouse
-		Vector2 m_mousePosition;
+        glm::vec2 m_mousePosition;
+        glm::vec2 m_prevMousePosition;
+        glm::vec2 m_mouseRelative;
 		
 		std::array<uint8_t, 3> m_mouseButtonState;
 		std::array<uint8_t, 3> m_prevMouseButtonState;
@@ -74,4 +75,5 @@ namespace Ethrl
     extern const uint32_t key_d;
     extern const uint32_t key_q;
     extern const uint32_t key_e;
+    extern const uint32_t key_r;
 }
