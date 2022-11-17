@@ -18,14 +18,14 @@ namespace Ethrl {
             m_pitch = glm::clamp(m_pitch, -89.0f, 89.0f);
         }
 
-        glm::quat qpitch = glm::angleAxis(glm::radians(m_pitch), glm::vec3{ 1, 0, 0 });
-        glm::quat qyaw = glm::angleAxis(glm::radians(m_yaw), glm::vec3{ 0, 1, 0 });
+        glm::vec3 forward;
+        forward.x = cos(glm::radians(m_yaw - 90.0f)) * cos(glm::radians(m_pitch));
+        forward.y = sin(glm::radians(m_pitch));
+        forward.z = sin(glm::radians(m_yaw - 90.0f)) * cos(glm::radians(m_pitch));
+        forward = glm::normalize(forward);
 
-        glm::quat q = qpitch * qyaw;
-        glm::vec3 forward = q * glm::vec3{ 0, 0, 1 };
-
-        glm::mat4 view = glm::lookAt(glm::vec3{ 0.0f }, forward, glm::vec3{ 0, 1, 0 });
-        m_owner->m_transform.rotation = glm::quat_cast(view);
+        glm::mat4 view = glm::lookAt(glm::vec3{ 0.0f }, -forward, glm::vec3{ 0, 1, 0 });
+        m_owner->m_transform.rotation = glm::conjugate(glm::quat_cast(view));
 
         glm::vec3 direction{ 0 };
 
@@ -47,6 +47,7 @@ namespace Ethrl {
 
     bool CameraController::Read(const rapidjson::Value& value) {
         READ_DATA(value, speed);
+        READ_DATA(value, sensitivity);
 
         return true;
     }

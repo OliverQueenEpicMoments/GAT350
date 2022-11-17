@@ -1,0 +1,11 @@
+{
+  "program": "shaders/FX/Reflection.prog",
+  "cubemap": "Textures/Areskutan/",
+  "cubemap_extension": ".jpg",
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 100
+}

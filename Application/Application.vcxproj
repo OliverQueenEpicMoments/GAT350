@@ -35,6 +35,8 @@
     <None Include="..\Build\Assets\Materials\MantisShrimp.mtrl" />
     <None Include="..\Build\Assets\Materials\Multi.mtrl" />
     <None Include="..\Build\Assets\Materials\Octopus.mtrl" />
+    <None Include="..\Build\Assets\Materials\Reflection.mtrl" />
+    <None Include="..\Build\Assets\Materials\Refraction.mtrl" />
     <None Include="..\Build\Assets\Materials\Skull.mtrl" />
     <None Include="..\Build\Assets\Materials\SkullEmoji.mtrl" />
     <None Include="..\Build\Assets\Materials\Skybox.mtrl" />
@@ -55,6 +57,12 @@
     <None Include="..\Build\Assets\Shaders\FX\cell.frag" />
     <None Include="..\Build\Assets\Shaders\FX\cell.prog" />
     <None Include="..\Build\Assets\Shaders\FX\cell.vert" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflection.frag" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflection.prog" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflection.vert" />
+    <None Include="..\Build\Assets\Shaders\FX\Refraction.frag" />
+    <None Include="..\Build\Assets\Shaders\FX\Refraction.prog" />
+    <None Include="..\Build\Assets\Shaders\FX\Refraction.vert" />
     <None Include="..\Build\Assets\Shaders\FX\Skybox.frag" />
     <None Include="..\Build\Assets\Shaders\FX\Skybox.prog" />
     <None Include="..\Build\Assets\Shaders\FX\Skybox.vert" />

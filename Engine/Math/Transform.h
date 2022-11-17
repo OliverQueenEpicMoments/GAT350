@@ -10,9 +10,9 @@ namespace Ethrl {
         glm::quat rotation;
 		glm::vec3 scale{ 1 };
 
-        glm::vec3 GetRight() { return ((glm::mat4)(*this))[0]; }
-        glm::vec3 GetUp() { return ((glm::mat4)(*this))[1]; }
-        glm::vec3 GetForward() { return ((glm::mat4)(*this))[2]; }
+        glm::vec3 GetRight() { return rotation * glm::vec3{ 1, 0, 0 }; }
+        glm::vec3 GetUp() { return rotation * glm::vec3{ 0, 1, 0 }; }
+        glm::vec3 GetForward() { return rotation * glm::vec3{ 0, 0, 1 }; }
 
 		glm::mat4 matrix;
 

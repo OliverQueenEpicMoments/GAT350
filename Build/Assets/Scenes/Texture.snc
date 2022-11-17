@@ -172,7 +172,8 @@
         },
         {
           "type": "CameraController",
-          "speed": 4
+          "speed": 4,
+          "sensitivity": 0.4
         }
       ]
     }
