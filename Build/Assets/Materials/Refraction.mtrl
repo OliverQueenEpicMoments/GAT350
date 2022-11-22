@@ -1,5 +1,5 @@
 {
-  "program": "shaders/FX/Refraction.prog",
+  "program": "shaders/FX/Reflect_Refract.prog",
   "cubemap": "Textures/Areskutan/",
   "cubemap_extension": ".jpg",
   "color": [

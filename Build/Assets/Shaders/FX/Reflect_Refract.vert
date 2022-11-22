@@ -3,6 +3,7 @@
 in layout(location = 0) vec3 vposition;
 in layout(location = 2) vec3 vnormal;
 
+out vec3 reflectiondir;
 out vec3 refractiondir;
 
 uniform float ri = 1.0;
@@ -17,6 +18,7 @@ void main() {
 
     vec3 cameraposition = vec3(inverse(view)[3]);
     vec3 viewdir = normalize(position - cameraposition);
+    reflectiondir = reflect(viewdir, normal);
     refractiondir = refract(viewdir, normal, 1.0 / ri);
 
 	mat4 mvp = projection * view * model;

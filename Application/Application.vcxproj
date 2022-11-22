@@ -60,6 +60,9 @@
     <None Include="..\Build\Assets\Shaders\FX\Reflection.frag" />
     <None Include="..\Build\Assets\Shaders\FX\Reflection.prog" />
     <None Include="..\Build\Assets\Shaders\FX\Reflection.vert" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflect_Refract.frag" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflect_Refract.prog" />
+    <None Include="..\Build\Assets\Shaders\FX\Reflect_Refract.vert" />
     <None Include="..\Build\Assets\Shaders\FX\Refraction.frag" />
     <None Include="..\Build\Assets\Shaders\FX\Refraction.prog" />
     <None Include="..\Build\Assets\Shaders\FX\Refraction.vert" />

@@ -21,6 +21,7 @@ int main(int argc, char** argv) {
     glm::vec3 Position = { 0, 0, 0 };
     glm::vec3 Position2 = { 0, 0, 0 };
     float ri = 1;
+    float interp = 1;
 	bool Quit = false;
 	while (!Quit) {
 		Ethrl::Engine::Instance().Update();
@@ -45,26 +46,19 @@ int main(int argc, char** argv) {
             Light2->m_transform.position = Position2;
         }
 
-        auto program = Ethrl::g_resources.Get<Ethrl::Program>("Shaders/FX/refraction.prog");
+        auto program = Ethrl::g_resources.Get<Ethrl::Program>("Shaders/FX/Reflect_Refract.prog");
         if (program) {
             program->Use();
             program->SetUniform("ri", ri);
+            program->SetUniform("interp", interp);
         }
 
-        ImGui::Begin("Rotate");
+        ImGui::Begin("Everything");
         ImGui::DragFloat3("Rotation", &Rotation[0]);
-        ImGui::End();
-
-        ImGui::Begin("Light");
         ImGui::DragFloat3("Light Position", &Position[0]);
-        ImGui::End();
-
-        ImGui::Begin("Light 2");
         ImGui::DragFloat3("Light2 Position", &Position2[0]);
-        ImGui::End();
-
-        ImGui::Begin("Refraction");
         ImGui::DragFloat("Refraction Index", &ri, 0.01f, 1, 4);
+        ImGui::DragFloat("Interpolation", &interp, 0.01f, 0, 10);
         ImGui::End();
 
         Scene->Update();
