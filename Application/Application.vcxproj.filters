@@ -34,6 +34,9 @@
     <Filter Include="Resource Files\Assets\Shaders\Unlit">
       <UniqueIdentifier>{bd798c81-1be0-4ff2-85f3-124f020d948f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Assets\Shaders\PostProcess">
+      <UniqueIdentifier>{a6dd12c0-4d65-4e1a-95e3-e6c15cd45f01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -202,6 +205,24 @@
     </None>
     <None Include="..\Build\Assets\Shaders\FX\Reflect_Refract.vert">
       <Filter>Resource Files\Assets\Shaders\FX</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\RTT.snc">
+      <Filter>Resource Files\Assets\Scenes</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\RTT.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\PostProcess\postprocess.frag">
+      <Filter>Resource Files\Assets\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\PostProcess\postprocess.prog">
+      <Filter>Resource Files\Assets\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\Shaders\PostProcess\postprocess.vert">
+      <Filter>Resource Files\Assets\Shaders\PostProcess</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\postprocess.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
     </None>
   </ItemGroup>
 </Project>

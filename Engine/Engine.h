@@ -50,6 +50,7 @@
 #include "Renderer/Material.h"
 #include "Renderer/Program.h"
 #include "Renderer/CubemapTexture.h"
+#include "Renderer/Framebuffer.h"
 
 #include <memory>
 #include <vector>

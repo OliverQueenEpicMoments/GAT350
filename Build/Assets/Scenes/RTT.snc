@@ -1,0 +1,164 @@
+{
+  "clear_color": [
+    0.25,
+    0,
+    0
+  ],
+  "ambient_color": [
+    0.2,
+    0.2,
+    0.2
+  ],
+  "actors": [
+    {
+      "type": "Actor",
+      "name": "Skybox",
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/cube.obj",
+          "material_name": "Materials/Skybox.mtrl",
+          "depth_test": false
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Heisenbones",
+      "transform": {
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "scale": [
+          0.05,
+          0.05,
+          0.05
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Heisenbones.glb",
+          "material_name": "Materials/Heisenbones.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "PostProcess",
+      "transform": {
+        "position": [
+          3,
+          2,
+          0
+        ],
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/quad.obj",
+          "material_name": "Materials/postprocess.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light",
+      "active": true,
+      "transform": {
+        "position": [
+          0,
+          1,
+          1
+        ],
+        "rotation": [
+          135,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "type_name": "point",
+          "cutoff": 45.0,
+          "exponent": 50.0
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Light2",
+      "transform": {
+        "position": [
+          5,
+          3,
+          1
+        ]
+      },
+      "components": [
+        {
+          "type": "LightComponent",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "type_name": "point",
+          "cutoff": 25.0,
+          "exponent": 10.0
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Camera",
+      "transform": {
+        "position": [
+          0,
+          0,
+          3
+        ],
+        "rotation": [
+          0,
+          180,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "CameraComponent",
+          "fov": 45,
+          "near": 0.1,
+          "far": 100
+        },
+        {
+          "type": "CameraController",
+          "speed": 4
+        }
+      ]
+    }
+  ]
+}

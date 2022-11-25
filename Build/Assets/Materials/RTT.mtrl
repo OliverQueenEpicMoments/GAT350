@@ -1,0 +1,10 @@
+{
+  "program": "shaders/unlit/texture.prog",
+  "textures": [ "FB_Texture" ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 32
+}

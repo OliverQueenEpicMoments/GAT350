@@ -1,6 +1,8 @@
 #include "Engine.h"
 #include <iostream>
 
+#define POST_PROCESS
+
 int main(int argc, char** argv) {
 	LOG("Application started...");
 	Ethrl::InitializeMemory();
@@ -14,8 +16,17 @@ int main(int argc, char** argv) {
 	LOG("Window Initialized...");
     Ethrl::g_gui.Initialize(Ethrl::g_renderer);
 
+    // Create Framebuffer Texture
+    auto Texture = std::make_shared<Ethrl::Texture>();
+    Texture->CreateTexture(128, 128);
+    Ethrl::g_resources.Add<Ethrl::Texture>("FB_Texture", Texture);
+
+    // Create Framebuffer
+    auto Framebuffer = Ethrl::g_resources.Get<Ethrl::Framebuffer>("Framebuffer", "FB_Texture");
+    Framebuffer->Unbind();
+
     // Load scene
-    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/Cubemap.snc");
+    auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/RTT.snc");
 
     glm::vec3 Rotation = { 0, 0, 0 };
     glm::vec3 Position = { 0, 0, 0 };
@@ -53,6 +64,12 @@ int main(int argc, char** argv) {
             program->SetUniform("interp", interp);
         }
 
+        auto Program2 = Ethrl::g_resources.Get<Ethrl::Program>("Shaders/PostProcess/postprocess.prog");
+        if (Program2) {
+            Program2->Use();
+            Program2->SetUniform("offset", Ethrl::g_time.time);
+        }
+
         ImGui::Begin("Everything");
         ImGui::DragFloat3("Rotation", &Rotation[0]);
         ImGui::DragFloat3("Light Position", &Position[0]);
@@ -63,10 +80,48 @@ int main(int argc, char** argv) {
 
         Scene->Update();
 
+#ifdef POST_PROCESS
+
+        // Don't draw post process actor when rendering to the framebuffer
+        {
+            auto actor = Scene->GetActorFromName("PostProcess");
+            if (actor) {
+                actor->SetActive(false);
+            }
+        }
+
+        // Render pass 1 (Render to Framebuffer)
+        Ethrl::g_renderer.SetViewport(0, 0, Framebuffer->GetSize().x, Framebuffer->GetSize().y);
+        Framebuffer->Bind();
+
 		Ethrl::g_renderer.BeginFrame();
 
         Scene->PreRender(Ethrl::g_renderer);
         Scene->Render(Ethrl::g_renderer);
+        Framebuffer->Unbind();
+
+        // Render pass 2 (Render to screen)
+        Ethrl::g_renderer.RestoreViewport();
+        Ethrl::g_renderer.BeginFrame();
+        Scene->PreRender(Ethrl::g_renderer);
+
+        // Draw only the post process actor to the screen
+        {
+            auto actor = Scene->GetActorFromName("PostProcess");
+            if (actor) {
+                actor->SetActive(true);
+                actor->Draw(Ethrl::g_renderer);
+            }
+        }
+
+#else
+
+        Ethrl::g_renderer.BeginFrame();
+        Scene->PreRender(Ethrl::g_renderer);
+        Scene->Render(Ethrl::g_renderer);
+
+#endif
+
         Ethrl::g_gui.Draw();
 
 		Ethrl::g_renderer.EndFrame();

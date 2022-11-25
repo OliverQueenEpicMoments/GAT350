@@ -41,7 +41,7 @@ namespace Ethrl
     Rect& SpriteAnimComponent::GetSource()
     {
         // calculate source rect
-        Vector2 cellSize = m_sequence->texture->GetSize() / Vector2{ m_sequence->num_columns, m_sequence->num_rows };
+        glm::ivec2 cellSize = m_sequence->texture->GetSize() / glm::ivec2{ m_sequence->num_columns, m_sequence->num_rows };
 
         int column = (frame - 1) % m_sequence->num_columns;
         int row = (frame - 1) / m_sequence->num_columns;

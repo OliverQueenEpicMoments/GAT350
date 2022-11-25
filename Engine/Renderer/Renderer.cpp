@@ -22,13 +22,14 @@ namespace Ethrl {
 		IMG_Quit();
 	}
 
-	void Renderer::CreateWindow(const char* name, int width, int height, bool fullscreen) {
-		m_width = width;
-		m_height = height;
+	void Renderer::CreateWindow(const std::string& name, int width, int height, bool fullscreen) {
+		Width = width;
+		Height = height;
+        Fullscreen = fullscreen;
 
 		int flags = (fullscreen) ? SDL_WINDOW_FULLSCREEN : (SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
 
-		m_window = SDL_CreateWindow(name, 100, 100, width, height, SDL_WINDOW_OPENGL | flags);
+		m_window = SDL_CreateWindow(name.c_str(), 100, 100, width, height, SDL_WINDOW_OPENGL | flags);
 
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -75,12 +76,12 @@ namespace Ethrl {
 		SDL_RenderDrawPointF(m_renderer, v.x, v.y);
 	}
 
-	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle, const Vector2& scale, const Vector2& registration) {
-		Vector2 size = texture->GetSize();
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const glm::ivec2& position, float angle, const glm::ivec2& scale, const glm::ivec2& registration) {
+		/*glm::ivec2 size = texture->GetSize();
 		size = size * scale;
 
-		Vector2 origin = size * registration;
-		Vector2 tposition = position - origin;
+        glm::ivec2 origin = size * registration;
+        glm::ivec2 tposition = position - origin;
 
 		SDL_Rect dest;
 		dest.x = (int)(tposition.x);
@@ -88,7 +89,7 @@ namespace Ethrl {
 		dest.w = (int)(size.x);
 		dest.h = (int)(size.y);
 
-		SDL_Point center{ (int)origin.x, (int)origin.y };
+		SDL_Point center{ (int)origin.x, (int)origin.y };*/
 				
 		//SDL_RenderCopyEx(m_renderer, texture->m_texture, nullptr, &dest, angle, &center, SDL_FLIP_NONE);
 	}
@@ -137,4 +138,12 @@ namespace Ethrl {
 		SDL_RendererFlip flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;*/
 		//SDL_RenderCopyEx(m_renderer, texture->m_texture, &src, &dest, math::RadToDeg(mx.GetRotation()), &center, flip);
 	}
+
+	void Renderer::SetViewport(int x, int y, int width, int height)	{
+        glViewport(x, y, width, height);
+	}
+
+    void Renderer::RestoreViewport() {
+        glViewport(0, 0, Width, Height);
+    }
 }

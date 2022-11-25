@@ -5,7 +5,7 @@ namespace Ethrl {
 	bool Model::Create(std::string name, ...) {
         Assimp::Importer importer;
 
-        const aiScene* scene = importer.ReadFile(name, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+        const aiScene* scene = importer.ReadFile(name, aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_CalcTangentSpace);
 
         if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
             LOG("Error loading assimp file %s", importer.GetErrorString());

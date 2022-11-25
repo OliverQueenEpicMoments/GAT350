@@ -47,6 +47,7 @@ namespace Ethrl {
                 LOG(SDL_GetError());
                 return false;
             }
+            //FlipSurface(surface);
 
             LOG("%s : width = %d | height = %d | pixel format = %s", filenames[i].c_str(), surface->w, surface->h, SDL_GetPixelFormatName(surface->format->format));
 
