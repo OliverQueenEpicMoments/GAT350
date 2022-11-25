@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
 
     // Create Framebuffer Texture
     auto Texture = std::make_shared<Ethrl::Texture>();
-    Texture->CreateTexture(128, 128);
+    Texture->CreateTexture(1024, 1024);
     Ethrl::g_resources.Add<Ethrl::Texture>("FB_Texture", Texture);
 
     // Create Framebuffer

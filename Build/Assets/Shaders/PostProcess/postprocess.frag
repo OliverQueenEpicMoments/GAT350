@@ -20,9 +20,9 @@ void main() {
 	// fcolor = vec4(1.0 - color, 1); 
 
     // Night Vision
-    // vec3 color = texture(textureMap, texcoord).rgb;
-    // float avg = (color.r + color.g + color.b) / 3.0;
-	// fcolor = vec4(vec3(0, avg, 0), 1);
+    vec3 color = texture(textureMap, texcoord).rgb;
+    float avg = (color.r + color.g + color.b) / 3.0;
+	fcolor = vec4(vec3(0, avg, 0), 1);
 
     // Scaline
     // vec3 color = texture(textureMap, texcoord).rgb;
@@ -35,5 +35,5 @@ void main() {
     // ttexcoord.x += sin(ttexcoord.y * 50.0 + offset) / 50.0;
     // fcolor = texture(textureMap, ttexcoord);
 
-	fcolor = texture(textureMap, texcoord);
+	// fcolor = texture(textureMap, texcoord);
 }
