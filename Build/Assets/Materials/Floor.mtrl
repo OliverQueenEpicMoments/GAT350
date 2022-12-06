@@ -1,10 +1,10 @@
 {
-  "program": "shaders/normal_phong.prog",
-  "texture": "textures/Lava-diffuse.png",
+  "program": "shaders/lit/texture.prog",
+  "textures": [ "textures/Lava_diffuse.png", "textures/lava_normal.png" ],
   "color": [
     1,
     1,
     1
   ],
-  "shininess": 100
+  "shininess": 1000
 }
