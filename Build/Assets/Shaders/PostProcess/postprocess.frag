@@ -11,9 +11,9 @@ uniform sampler2D textureMap;
 
 void main() {
     // Black and white
-    vec3 color = texture(textureMap, texcoord).rgb;
-    float avg = (color.r + color.g + color.b) / 3.0; 
-	fcolor = vec4(vec3(avg), 1); 
+//    vec3 color = texture(textureMap, texcoord).rgb;
+//    float avg = (color.r + color.g + color.b) / 3.0; 
+//	fcolor = vec4(vec3(avg), 1); 
 
     // Inverted
     // vec3 color = texture(textureMap, texcoord).rgb;
@@ -36,5 +36,5 @@ void main() {
     // fcolor = texture(textureMap, ttexcoord);
 
     // Normal
-//	fcolor = texture(textureMap, texcoord);
+	fcolor = texture(textureMap, texcoord);
 }

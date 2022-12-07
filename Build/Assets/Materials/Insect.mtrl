@@ -1,0 +1,10 @@
+{
+  "program": "shaders/lit/texture.prog",
+  "textures": [ "textures/Insect_Diffuse.png", "textures/Insect_Normal.png" ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 32
+}

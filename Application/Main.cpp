@@ -29,8 +29,9 @@ int main(int argc, char** argv) {
     auto Scene = Ethrl::g_resources.Get<Ethrl::Scene>("Scenes/RTT.snc");
 
     glm::vec3 Rotation = { 0, 0, 0 };
-    glm::vec3 Position = { 0, 0, 0 };
-    glm::vec3 Position2 = { 0, 0, 0 };
+    glm::vec3 Position = { 0, 2, -5 };
+    glm::vec3 Position2 = { 3, 2, 4 };
+    glm::vec3 Position3 = { -1.5f, 2, 4 };
     float ri = 1;
     float interp = 1;
 	bool Quit = false;
@@ -57,6 +58,12 @@ int main(int argc, char** argv) {
             Light2->m_transform.position = Position2;
         }
 
+        auto Light3 = Scene->GetActorFromName("Light3");
+        if (Light3) {
+            // move light using sliders
+            Light3->m_transform.position = Position3;
+        }
+
         auto program = Ethrl::g_resources.Get<Ethrl::Program>("Shaders/FX/Reflect_Refract.prog");
         if (program) {
             program->Use();
@@ -74,6 +81,7 @@ int main(int argc, char** argv) {
         ImGui::DragFloat3("Rotation", &Rotation[0]);
         ImGui::DragFloat3("Light Position", &Position[0]);
         ImGui::DragFloat3("Light2 Position", &Position2[0]);
+        ImGui::DragFloat3("Light3 Position", &Position3[0]);
         ImGui::DragFloat("Refraction Index", &ri, 0.01f, 1, 4);
         ImGui::DragFloat("Interpolation", &interp, 0.01f, 0, 10);
         ImGui::End();

@@ -1,0 +1,10 @@
+{
+  "program": "shaders/lit/texture.prog",
+  "textures": [ "textures/Beetle_Diffuse.png", "textures/Beetle_Normal.png" ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 32
+}

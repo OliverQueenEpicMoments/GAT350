@@ -28,10 +28,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Build\Assets\Materials\AllSeeingEye.mtrl" />
+    <None Include="..\Build\Assets\Materials\Beetle.mtrl" />
     <None Include="..\Build\Assets\Materials\Box.mtrl" />
+    <None Include="..\Build\Assets\Materials\Centipede.mtrl" />
     <None Include="..\Build\Assets\Materials\Floor.mtrl" />
     <None Include="..\Build\Assets\Materials\Heisenbones.mtrl" />
     <None Include="..\Build\Assets\Materials\House.mtrl" />
+    <None Include="..\Build\Assets\Materials\Insect.mtrl" />
     <None Include="..\Build\Assets\Materials\MantisShrimp.mtrl" />
     <None Include="..\Build\Assets\Materials\Multi.mtrl" />
     <None Include="..\Build\Assets\Materials\Octopus.mtrl" />
@@ -43,6 +46,7 @@
     <None Include="..\Build\Assets\Materials\SkullEmoji.mtrl" />
     <None Include="..\Build\Assets\Materials\Skybox.mtrl" />
     <None Include="..\Build\Assets\Materials\Sloth.mtrl" />
+    <None Include="..\Build\Assets\Materials\StealthSkull.mtrl" />
     <None Include="..\Build\Assets\Scenes\Basic.snc" />
     <None Include="..\Build\Assets\Scenes\Basic_lit.snc" />
     <None Include="..\Build\Assets\Scenes\Cubemap.snc" />

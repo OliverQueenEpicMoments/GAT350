@@ -1,0 +1,10 @@
+{
+  "program": "shaders/lit/texture.prog",
+  "textures": [ "textures/Centipede_Diffuse.png", "textures/Centipede_Normal.png" ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 32
+}

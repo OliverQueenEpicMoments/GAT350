@@ -52,6 +52,62 @@
     },
     {
       "type": "Actor",
+      "name": "Crystal Skeleton",
+      "transform": {
+        "position": [
+          -1,
+          0,
+          -1
+        ],
+        "scale": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Heisenbones.glb",
+          "material_name": "Materials/StealthSkull.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Crystal Skeleton2",
+      "transform": {
+        "position": [
+          1,
+          0,
+          -1
+        ],
+        "scale": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Heisenbones.glb",
+          "material_name": "Materials/StealthSkull.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
       "name": "Sloth",
       "transform": {
         "position": [
@@ -83,18 +139,18 @@
       "name": "Octopus",
       "transform": {
         "position": [
-          3,
           0,
-          4
+          0,
+          7
         ],
         "scale": [
-          0.6,
-          0.6,
-          0.6
+          1,
+          1,
+          1
         ],
         "rotation": [
           0,
-          230,
+          200,
           0
         ]
       },
@@ -111,17 +167,17 @@
       "name": "MantisShrimp",
       "transform": {
         "position": [
-          -1.5,
-          -0.2,
-          4
+          -2.75,
+          -0.25,
+          5
         ],
         "scale": [
-          0.5,
-          0.5,
-          0.5
+          0.62,
+          0.62,
+          0.62
         ],
         "rotation": [
-          0,
+          10,
           160,
           0
         ]
@@ -131,6 +187,90 @@
           "type": "ModelComponent",
           "model_name": "Models/MantisShrimp.glb",
           "material_name": "Materials/MantisShrimp.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Beetle",
+      "transform": {
+        "position": [
+          -4,
+          -0.1,
+          2
+        ],
+        "scale": [
+          0.13,
+          0.13,
+          0.13
+        ],
+        "rotation": [
+          0,
+          135,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Beetle.glb",
+          "material_name": "Materials/Beetle.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Centipede",
+      "transform": {
+        "position": [
+          5,
+          -0.1,
+          2
+        ],
+        "scale": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "rotation": [
+          0,
+          235,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Centipede.glb",
+          "material_name": "Materials/Centipede.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
+      "name": "Creature",
+      "transform": {
+        "position": [
+          3,
+          -0.1,
+          4.5
+        ],
+        "scale": [
+          0.3,
+          0.3,
+          0.3
+        ],
+        "rotation": [
+          0,
+          215,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/Insect.glb",
+          "material_name": "Materials/Insect.mtrl"
         }
       ]
     },
@@ -193,17 +333,11 @@
     {
       "type": "Actor",
       "name": "Light",
-      "active": true,
       "transform": {
         "position": [
           0,
           3,
-          -500
-        ],
-        "rotation": [
-          135,
-          0,
-          0
+          -5
         ]
       },
       "components": [
@@ -215,8 +349,8 @@
             1
           ],
           "type_name": "point",
-          "cutoff": 45.0,
-          "exponent": 50.0
+          "cutoff": 25.0,
+          "exponent": 10.0
         }
       ]
     },

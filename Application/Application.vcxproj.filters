@@ -224,5 +224,17 @@
     <None Include="..\Build\Assets\Materials\postprocess.mtrl">
       <Filter>Resource Files\Assets\Materials</Filter>
     </None>
+    <None Include="..\Build\Assets\Materials\StealthSkull.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Insect.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Centipede.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
+    <None Include="..\Build\Assets\Materials\Beetle.mtrl">
+      <Filter>Resource Files\Assets\Materials</Filter>
+    </None>
   </ItemGroup>
 </Project>

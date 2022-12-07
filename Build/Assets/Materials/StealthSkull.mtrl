@@ -1,0 +1,10 @@
+{
+  "program": "shaders/FX/Reflect_Refract.prog",
+  "textures": [ "textures/HeisenbonesDiffuse.png", "textures/HeisenbonesNormal.png" ],
+  "color": [
+    1,
+    1,
+    1
+  ],
+  "shininess": 32
+}
