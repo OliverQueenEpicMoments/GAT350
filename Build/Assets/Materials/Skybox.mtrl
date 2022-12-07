@@ -1,6 +1,6 @@
 {
   "program": "shaders/FX/Skybox.prog",
-  "cubemap": "Textures/Areskutan/",
+  "cubemap": "Textures/SanFrancisco4/",
   "cubemap_extension": ".jpg",
   "color": [
     1,

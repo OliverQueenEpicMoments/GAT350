@@ -52,6 +52,34 @@
     },
     {
       "type": "Actor",
+      "name": "Heisenbones Hat",
+      "transform": {
+        "position": [
+          0.02,
+          1.28,
+          0.03
+        ],
+        "scale": [
+          0.035,
+          0.035,
+          0.035
+        ],
+        "rotation": [
+          -100,
+          0,
+          0
+        ]
+      },
+      "components": [
+        {
+          "type": "ModelComponent",
+          "model_name": "Models/HeisenbonesHat.glb",
+          "material_name": "Materials/Hat.mtrl"
+        }
+      ]
+    },
+    {
+      "type": "Actor",
       "name": "Crystal Skeleton",
       "transform": {
         "position": [
@@ -66,7 +94,7 @@
         ],
         "rotation": [
           0,
-          0,
+          -45,
           0
         ]
       },
@@ -94,7 +122,7 @@
         ],
         "rotation": [
           0,
-          0,
+          45,
           0
         ]
       },
@@ -167,9 +195,9 @@
       "name": "MantisShrimp",
       "transform": {
         "position": [
-          -2.75,
+          -2.8,
           -0.25,
-          5
+          4.5
         ],
         "scale": [
           0.62,
